@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favourite_books', function (Blueprint $table) {
+        Schema::create('favourites', function (Blueprint $table) {
+           //$table->string('opis');
+           $table->foreignId('book_id');
+           $table->foreignId('user_id');
+        });
+
+        Schema::table('favourites', function (Blueprint $table) {
             
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('book_id')->references('book_id')->on('books');
             
         });
-
-        //Schema::rename($FavBook, $Favourites);
     }
 
     /**
@@ -26,13 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favourite_books');
+        Schema::dropIfExists('favourites');
     }
-
-    
-    
-
-
 };
-
-

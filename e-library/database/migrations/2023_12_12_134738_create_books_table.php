@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->float('num_pages');
             $table->text('description');
+            $table->foreignId('author_id');
+            $table->foreignId('genre_id');
         });
 
         

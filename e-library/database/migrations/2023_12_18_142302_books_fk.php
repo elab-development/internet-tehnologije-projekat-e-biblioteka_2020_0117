@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $table->foreign('author_id')->references('author_id')->on('authors');
-        $table->foreign('genre_id')->references('genre_id')->on('genres');
+        Schema::table('books', function (Blueprint $table) {
+            $table->foreign('author_id')->references('author_id')->on('authors');
+            $table->foreign('genre_id')->references('genre_id')->on('genres');
+        });
+       
     }
 
     /**
