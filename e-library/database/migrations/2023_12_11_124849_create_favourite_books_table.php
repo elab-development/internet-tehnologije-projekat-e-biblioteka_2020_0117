@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('favourite_books', function (Blueprint $table) {
             
-            $table->foreignId('user_id');
-            $table->foreignID('book_id');
+            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('book_id')->references('book_id')->on('books');
             
         });
 
