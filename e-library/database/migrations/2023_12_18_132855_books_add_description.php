@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favourite_books', function (Blueprint $table) {
-            
-            $table->foreignId('user_id');
-            $table->foreignID('book_id');
-            
+        Schema::table('books', function (Blueprint $table) {
+            $table->text('description');
         });
-
-        //Schema::rename($FavBook, $Favourites);
     }
 
     /**
@@ -26,13 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favourite_books');
+        //
     }
-
-    
-    
-
-
 };
-
-

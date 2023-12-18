@@ -17,14 +17,10 @@ return new class extends Migration
             $table->float('num_pages');
             $table->foreignId('author_id');
             $table->foreignId('genre_id');
-            
+            $table->text('description');
         });
 
-        Schema::table('books', function (Blueprint $table) {
-           
-            $table->text('description');
         
-        });
 
     }
 
