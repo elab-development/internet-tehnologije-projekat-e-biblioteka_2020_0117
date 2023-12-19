@@ -15,4 +15,8 @@ class Genre extends Model
         'name'
         
     ];
+public function genre_books(){
+    return $this->hasMany(Book::class);
+}
+
 }
