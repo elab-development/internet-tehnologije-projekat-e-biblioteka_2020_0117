@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::rename("favourite_books", "favourites");
     }
 
     /**
@@ -19,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::rename("favourites","favourite_books");
     }
 };

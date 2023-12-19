@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id('book_id');
             $table->string('name');
-            $table->float('num_pages');
             $table->foreignId('author_id');
             $table->foreignId('genre_id');
             $table->text('description');
