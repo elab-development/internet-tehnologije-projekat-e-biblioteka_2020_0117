@@ -53,7 +53,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function favBooks()
+    public function fav_Books()
     {
         return $this->hasMany(FavBook::class);
     }
