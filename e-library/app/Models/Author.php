@@ -17,7 +17,12 @@ class Author extends Model
         
     ];
 
+<<<<<<< HEAD
+    public function books()
+    {
+=======
     public function books(){
+>>>>>>> 046f93aa526b9b127c25eff41272b825f84b656e
         return $this->hasMany(Book::class);
     }
 
