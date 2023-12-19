@@ -27,6 +27,11 @@ class User extends Authenticatable
         'date_payment_valid'
     ];
 
+    public function favBooks()
+    {
+        return $this->hasMany(FavBook::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
