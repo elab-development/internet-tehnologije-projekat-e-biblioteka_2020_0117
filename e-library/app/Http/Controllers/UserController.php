@@ -36,7 +36,7 @@ class UserController extends Controller
             
             'username' => 'required|string|max:50',
             'name' => 'required|string|max:50',
-            'surname' => 'required|string|max:50',
+            //'surname' => 'required|string|max:50',
             'email' => 'required|email'
             
         ]);
