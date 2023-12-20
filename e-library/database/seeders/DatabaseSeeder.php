@@ -8,9 +8,11 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\FavBook;
 use App\Models\User;
-//use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Genre;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 //use Illuminate\Database\Seeder;
-//use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,23 +38,10 @@ class DatabaseSeeder extends Seeder
        
 
 
-        User::factory(5)->create();
-        $user1 = User::create([
-            'user_id' => 1,
-            'name' => 'Adam',
-            'surname' => 'Adamic',
-            'username' => 'ADAM',
-            'email' => 'adam@example.com',
-            'password' => Hash::make('admin1234')
-            
-        ]);
-        $user2 = User::create([
-            'user_id' => 2,
-            'name' => 'Bdam',
-            'surname' => 'Bdamic',
-            'username' => 'BDAM',
-            'email' => 'bdam@example.com',
-            'password' => Hash::make('admin1234')
-        ]);
+        //User::factory(5)->create();
+        Genre::factory(5)->create();
+            //ovo za Genre nece da radi jer iz nekog razloga hoce da ubaci kolone uipdated_at i created_at a one ne postoje u modelu
+
+
     }
 }

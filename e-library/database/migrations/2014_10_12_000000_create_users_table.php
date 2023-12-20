@@ -15,15 +15,15 @@ return new class extends Migration
             
             $table->id('user_id');
             $table->string('name');
-            $table->string('surname');
+            $table->string('surname')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->date('date_of_paying');
-            $table->date('date_payment_valid');
+            $table->date('date_of_paying')->nullable();
+            $table->date('date_payment_valid')->nullable();
         });
     }
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResources\UserCollection;
+use App\Http\Resources\UserResources\UserResource;
+
 
 class UserController extends Controller
 {
@@ -36,7 +39,7 @@ class UserController extends Controller
             
             'username' => 'required|string|max:50',
             'name' => 'required|string|max:50',
-            'surname' => 'required|string|max:50',
+            //'surname' => 'string|max:50',
             'email' => 'required|email'
             
         ]);
@@ -49,12 +52,12 @@ class UserController extends Controller
 
             'username' => $request->username,
             'name' => $request->name,
-            'surname' => $request->surname,
+            //'surname' => $request->surname,
             'email' => $request->email
            
         ]);
 
-        //return response()->json(['User stored successfully.', new UserResource($user), 'success' => true]);
+        return response()->json(['User stored successfully.', new UserResource($user), 'success' => true]);
 
 
     }
@@ -68,7 +71,7 @@ class UserController extends Controller
         if (is_null($user)) {
             return response()->json('Data not found', 404);
         }
-        //return new UserResource($user);
+        return new UserResource($user);
     }
 
     /**
