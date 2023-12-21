@@ -87,7 +87,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:50',
+            'surname' => 'required|string|max:50',
+            'email' => 'required|email',
+            'username' => 'required|string|max:50',
+        
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        
+
+        $user->save();
+
+        return response()->json(['User data updated successfully.', new UserResource($user), 'success' => true]);
     }
 
     /**
@@ -95,6 +117,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json('User deleted successfully.');
     }
 }

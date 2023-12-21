@@ -23,20 +23,12 @@ class Book extends Model
     {
         return $this->belongsTo(Author::class);
     }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 56377dd8857e9e1260d7788e246616f53add799d
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
-<<<<<<< HEAD
    
-=======
-    
->>>>>>> 56377dd8857e9e1260d7788e246616f53add799d
     public function favBooks()
     {
         return $this->hasMany(FavBook::class);
