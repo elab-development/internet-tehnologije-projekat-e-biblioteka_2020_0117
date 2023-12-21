@@ -48,7 +48,7 @@ class FavBookController extends Controller
 
         $favBook = FavBook::create([
             'book_id' => $request->book_id,
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->user()->user_id
         ]);
 
         return response()->json(['Favourite book created successfully.', new FavBookResource($favBook), 'success' => true]);
@@ -79,8 +79,9 @@ class FavBookController extends Controller
      */
     public function destroy($favBook_id)
     {
-
-        $favBook = FavBook::get()->where('id', $favBook_id)->first();
+        $user_id = auth()->user()->user_id;
+        $favBook = FavBook::get()->where('id', '=',$favBook_id)->where('user_id','=',$user_id)->first();
+        //ovo sa = je rekao chat gpt da treba
         if (!$favBook) {
             return response()->json('Data not found', 404);
         }

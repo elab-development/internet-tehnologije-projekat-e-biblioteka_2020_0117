@@ -40,7 +40,8 @@ class UserController extends Controller
             'username' => 'required|string|max:50',
             'name' => 'required|string|max:50',
             //'surname' => 'string|max:50',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'email_verified_at' => 'nullable'
             
         ]);
 

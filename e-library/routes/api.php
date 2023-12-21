@@ -4,7 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Resources\AuthorResources\AuthorCollection;
+use App\Http\Resources\AuthorResources\AuthorResource;
 use App\Http\Controllers\API\AuthController;
+
 
 
 /*
@@ -28,13 +32,14 @@ Route::get('/user', [UserController::class, 'show']);  //nisam sigurna...
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::resource('users', UserController::class);
+//Route::resource('/users', UserController::class);
 
-Route::resource('authors', AuthorController::class);
+//Route::get('/authors', AuthorController::class,'index');
 
-Route::resource('books', BookController::class)->only(['index', 'show']);;
+//Route::resource('/books', BookController::class)->only(['index', 'show']);;
+//ova ruta mozda nece da nam treba, ali neka je zakomentarisana za svaki slucaj
 
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-
+//Route::post('/register', [AuthController::class, 'register'])->name('register'); 
+//Route::post('/login', [AuthController::class, 'login'])->name('login');
+//ove rute vec imamo tako da bih ovo izbrisao
 

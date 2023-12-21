@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('author_id');
             $table->foreignId('genre_id');
             $table->text('description');
+            $table->string('created_at');
+            $table->string('updated_at');
         });
 
         
