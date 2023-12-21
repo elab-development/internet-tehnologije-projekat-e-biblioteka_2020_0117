@@ -22,11 +22,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'show']);  //nisam sigurna...
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::resource('users', UserController::class);
+
+Route::resource('authors', AuthorController::class);
+
+Route::resource('books', BookController::class)->only(['index', 'show']);;
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
