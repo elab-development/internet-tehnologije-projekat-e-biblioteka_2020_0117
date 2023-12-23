@@ -7,6 +7,9 @@ use App\Http\Resources\BookResources\BookResource;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\AuthorResources\AuthorCollection;
+use App\Http\Resources\AuthorResources\AuthorResource;
+use App\Models\Author;
 
 
 class BookController extends Controller
@@ -107,5 +110,25 @@ class BookController extends Controller
     {
         $book->delete();
         return response()->json('Book deleted successfully.');
+    }
+
+    //pretarzivanje knjiga po autoru
+    public function searchAuthor($author_id)
+    {
+        $books = Book::get()->where('author_id', $author_id);
+        if (is_null($books)) {
+            return response()->json('Data not found', 404);
+        }
+        return new BookCollection($books);
+    }
+
+    //pretraivanje knjiga po zanru
+    public function searchGenres($genre_id)
+    {
+        $books = Book::get()->where('genre_id', $genre_id);
+        if (is_null($books)) {
+            return response()->json('Data not found', 404);
+        }
+        return new BookCollection($books);
     }
 }
