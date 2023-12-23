@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\FavBookController;
 use App\Http\Resources\AuthorResources\AuthorCollection;
 use App\Http\Resources\AuthorResources\AuthorResource;
 use App\Http\Controllers\API\AuthController;
-
+use App\Http\middleware;
 
 
 /*
@@ -33,7 +36,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-
+Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
+Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
 
 //Route::resource('/users', UserController::class);
 
@@ -46,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
    /* Route::get('/profile', function (Request $request) {
         return auth()->user();
-    });  */
+    }); */
 
     Route::group(['middleware' => ['admin']], function () {
     });
@@ -54,11 +58,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('books', BookController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
 
     Route::resource('authors', AuthorController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
+    
+    Route::resource('genres', GenreController::class)->only(['create', 'store'])->middleware('admin');
 
     Route::resource('favbooks', FavBookController::class)->only(['index', 'show', 'store', 'destroy']);
 
-    Route::put('/update-user', [AuthController::class, 'update']);
-
-    Route::post('/logout', [AuthController::class, 'logout']);
+  
 });
 
