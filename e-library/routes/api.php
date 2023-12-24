@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     }); */
 
     Route::group(['middleware' => ['admin']], function () {
+        //zar rute ispod ne treba da budu ovde ili je ono ->middleware('admin') zapravo to
     });
 
     Route::resource('books', BookController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
@@ -62,6 +63,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('genres', GenreController::class)->only(['create', 'store'])->middleware('admin');
 
     Route::resource('favbooks', FavBookController::class)->only(['index', 'show', 'store', 'destroy']);
+    //mozda ovde da stavimo rutu da svako (ne mora da bude admin) moze da samo ponistava ovo favBook, kao da moze da postavi da mu se neka knjiga
+    //ne svidja vise, ili da napravimo dve posebno jedna bude store, a druga destroy da mogu da rade svi to kad su ulogovani
+    
 
   
 });
