@@ -30,7 +30,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/user', [UserController::class, 'show']);  //nisam sigurna...
+Route::get('/user', [UserController::class, 'show']);  
+
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -38,6 +39,10 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
 Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
+
+Route::post('/storeFavBook', [FavBookController::class, 'store']);
+Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
+
 
 //Route::resource('/users', UserController::class);
 
@@ -48,13 +53,6 @@ Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-   /* Route::get('/profile', function (Request $request) {
-        return auth()->user();
-    }); */
-
-    Route::group(['middleware' => ['admin']], function () {
-        //zar rute ispod ne treba da budu ovde ili je ono ->middleware('admin') zapravo to
-    });
 
     Route::resource('books', BookController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
 
@@ -62,9 +60,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::resource('genres', GenreController::class)->only(['create', 'store'])->middleware('admin');
 
-    Route::resource('favbooks', FavBookController::class)->only(['index', 'show', 'store', 'destroy']);
-    //mozda ovde da stavimo rutu da svako (ne mora da bude admin) moze da samo ponistava ovo favBook, kao da moze da postavi da mu se neka knjiga
-    //ne svidja vise, ili da napravimo dve posebno jedna bude store, a druga destroy da mogu da rade svi to kad su ulogovani
+    Route::put('/update-user', [AuthController::class, 'update']);
     
 
   
