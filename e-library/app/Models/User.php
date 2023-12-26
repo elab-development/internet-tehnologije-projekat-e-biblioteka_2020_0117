@@ -62,5 +62,9 @@ class User extends Authenticatable
         return $this->hasMany(FavBook::class);
     }
 
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
    
 }

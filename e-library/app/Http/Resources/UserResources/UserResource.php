@@ -25,8 +25,8 @@ class UserResource extends JsonResource
             'email' => $this->resource->email,
             'username' => $this->resource->username,
             'date_of_paying' => $this->resource->date_of_paying,
-            'date_payment_valid' => $this->resource->date_payment_valid
-            
+            'date_payment_valid' => $this->resource->date_payment_valid,
+            'admin' => $this->resource->admin
         ];
     }
 }

@@ -52,15 +52,21 @@ class AuthController extends Controller
 
         return response()->json(['success' => true, 'access_token' => $token, 'token_type' => 'Bearer']);
     }
-
-    public function logout()
+/*
+    public function logout($request) //Request treba da se doda
     {
         auth()->user()->tokens()->delete();
         return [
             'message' => 'Logout successful'
         ];
     }
+*/
 
+public function logout(Request $request)
+    {
+       $request->user()->tokens()->delete();
+       return response()->json(['message'=> 'Successfully logged out!']);
+    }
     public function update(Request $request)
     {
         $user_id = auth()->user()->id;
