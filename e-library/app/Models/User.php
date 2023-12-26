@@ -28,10 +28,7 @@ class User extends Authenticatable
         'date_payment_valid'
     ];
 
-    public function favBooks()
-    {
-        return $this->hasMany(FavBook::class);
-    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,6 +41,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attribute that is primary key.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -53,8 +57,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function fav_Books()
+    public function favBooks()
     {
         return $this->hasMany(FavBook::class);
     }
+
+   
 }

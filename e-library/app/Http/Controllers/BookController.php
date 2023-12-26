@@ -124,7 +124,7 @@ class BookController extends Controller
 
     //pretrazivanje knjiga po zanru
     public function searchGenres($genre_id)
-    {
+    {//da se mozda preko naziva trazi i da ne bude kompletan naziv
         $books = Book::get()->where('genre_id', $genre_id);
         if (is_null($books)) {
             return response()->json('Data not found', 404);

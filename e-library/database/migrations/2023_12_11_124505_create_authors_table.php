@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('author_id');
             $table->string('name');
             $table->string('surname');
-            $table->string('created_at');
-            $table->string('updated_at');
+            $table->string('created_at')->nullable();
+            $table->string('updated_at')->nullable();
         });
     }
 
