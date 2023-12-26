@@ -112,7 +112,7 @@ class BookController extends Controller
         return response()->json('Book deleted successfully.');
     }
 
-    //pretarzivanje knjiga po autoru
+    //pretrazivanje knjiga po autoru
     public function searchAuthor($author_id)
     {
         $books = Book::get()->where('author_id', $author_id);
@@ -122,7 +122,7 @@ class BookController extends Controller
         return new BookCollection($books);
     }
 
-    //pretraivanje knjiga po zanru
+    //pretrazivanje knjiga po zanru
     public function searchGenres($genre_id)
     {
         $books = Book::get()->where('genre_id', $genre_id);
