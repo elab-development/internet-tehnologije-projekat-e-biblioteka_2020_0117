@@ -1,6 +1,6 @@
 <?php
 
-use ErlandMuchasaj\LaravelFileUploader\FileUploader; // <= import the package
+use ErlandMuchasaj\LaravelFileUploader\FileUploader; 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -29,13 +29,11 @@ Route::post('/files', function (Request $request) {
 
     $max_size = (int) ini_get('upload_max_filesize') * 1000;
 
-    $extensions = implode(',', FileUploader::images());
 
     $request->validate([
         'file' => [
             'required',
             'file',
-            'mimes:' . $extensions,
             'max:'.$max_size,
         ]
     ]);
