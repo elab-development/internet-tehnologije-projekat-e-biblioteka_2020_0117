@@ -39,15 +39,15 @@ class GenreFactory extends Factory
          //       'name' => $faker->randomElement($genre_names)
          //   ];
         //});
-        $genreService = app(GenreService::class);
-        $genres = ['Fantasy', 'Mistery', 'Science fiction', 'Romance', 'Thriller', 'Crime', 'Drama', 'Advanture', 'Horror', 'Biography'];
-        $randomGenres = $genreService->getRandomUniqueGenres($genres);
+        //$genreService = app(GenreService::class);
+        //$genres = ['Fantasy', 'Mistery', 'Science fiction', 'Romance', 'Thriller', 'Crime', 'Drama', 'Advanture', 'Horror', 'Biography'];
+        //$randomGenres = $genreService->getRandomUniqueGenres($genres);
         
 
 
         return [
 
-            'name' => $randomGenres 
+            'name' => fake()->word(),
             
         ];
 

@@ -44,7 +44,8 @@ Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
 
 Route::post('/storeFavBook', [FavBookController::class, 'store']);
 Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
-
+//ruta za pretrazivanje po 2 kriterijuma
+Route::get('/genresAndAuthors/{author_id,genre_id}',[BookController::class,'searchAuthorGenre']);
 //
 //Route::delete('/authors/{author_id}', AuthorController::class,'destroy');//->only(['update', 'store', 'destroy']);//->middleware('admin');
 //Route::delete('/authors/{author_id}', [AuthorController::class, 'destroy']);

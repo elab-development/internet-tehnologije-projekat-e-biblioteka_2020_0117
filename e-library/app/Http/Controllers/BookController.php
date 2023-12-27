@@ -112,12 +112,20 @@ class BookController extends Controller
         return response()->json('Book deleted successfully.');
     }
 
-    //pretrazivanje knjiga po autoru
-    public function searchAuthor($author_id)
+    //pretrazivanje knjiga po autoru i po zanru
+    public function searchAuthorGenre($author_id,$genre_id)
     {
-        $books = Book::get()->where('author_id', $author_id);
+
+        $books = Book::get()->where('author_id', $author_id)->where('genre_id', $genre_id);
+
+        /*drugi nacin pretrage
+        $books = Book::where([
+            'author_id' => $author_id,
+            'genre_id' => $genre_id,
+        ])->get();
+        */
         if (is_null($books)) {
-            return response()->json('Data not found', 404);
+            return response()->json('There are no books that satisfy both criteriums', 404);
         }
         return new BookCollection($books);
     }
