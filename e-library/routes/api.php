@@ -45,6 +45,14 @@ Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
 Route::post('/storeFavBook', [FavBookController::class, 'store']);
 Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
 
+//
+//Route::delete('/authors/{author_id}', AuthorController::class,'destroy');//->only(['update', 'store', 'destroy']);//->middleware('admin');
+//Route::delete('/authors/{author_id}', [AuthorController::class, 'destroy']);
+Route::delete('/api/authors', [AuthorController::class, 'destroy']);
+Route::get('/api/authors', [AuthorController::class, 'show']);
+
+
+
 
 //Route::resource('/users', UserController::class);
 
@@ -59,7 +67,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         
         Route::resource('/books', BookController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
 
-        Route::resource('/authors/{author_id}', AuthorController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
+        
         
         Route::resource('/genres/{genre_id}', GenreController::class)->only(['create', 'store'])->middleware('admin');
     

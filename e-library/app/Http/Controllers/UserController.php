@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResources\UserCollection;
 use App\Http\Resources\UserResources\UserResource;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller

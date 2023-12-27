@@ -33,4 +33,6 @@ class Book extends Model
     {
         return $this->hasMany(FavBook::class);
     }
+
+    protected $primaryKey = 'book_id';
 }

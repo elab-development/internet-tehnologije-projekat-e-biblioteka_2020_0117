@@ -13,7 +13,7 @@ class AuthorResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
 
-    public static $wrap = 'Author';
+    public static $wrap = 'author';
 
     public function toArray($request)
     {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\GenreResources\GenreCollection;
+use App\Http\Resources\GenreResources\GenreResource;
 
 class GenreController extends Controller
 {
@@ -46,5 +49,8 @@ class GenreController extends Controller
         return response()->json(['message' => 'Genre created successfully', 'genre' => $genre], 201);
         
     }
+
+    
+
 
 }

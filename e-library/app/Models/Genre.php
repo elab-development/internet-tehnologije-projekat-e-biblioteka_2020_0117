@@ -24,6 +24,7 @@ class Genre extends Model
         return $this->hasMany(Book::class);
     }
     
+    protected $primaryKey = 'genre_id';
 }
 
 

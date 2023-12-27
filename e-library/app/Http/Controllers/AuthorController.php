@@ -96,8 +96,18 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy($author_id)
     {
+
+       // dd($author_id);
+
+        //$author_id = $request->input('author_id');
+        $author = Author::find($author_id);
+
+        if (!$author) {
+            return response()->json('Author not found.', 404);
+        }
+    
         $author->delete();
         return response()->json('Author deleted successfully.');
     }

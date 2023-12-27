@@ -21,5 +21,6 @@ class Author extends Model
     {
         return $this->hasMany(Book::class);
     }
+    protected $primaryKey = 'author_id';
 
 }
