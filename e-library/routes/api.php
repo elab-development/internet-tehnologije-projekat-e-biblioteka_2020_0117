@@ -37,7 +37,7 @@ Route::get('/user', [UserController::class, 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
+
 
 Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
 Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
@@ -49,7 +49,7 @@ Route::get('/genresAndAuthors/{author_id,genre_id}',[BookController::class,'sear
 //
 //Route::delete('/authors/{author_id}', AuthorController::class,'destroy');//->only(['update', 'store', 'destroy']);//->middleware('admin');
 //Route::delete('/authors/{author_id}', [AuthorController::class, 'destroy']);
-Route::delete('/api/authors', [AuthorController::class, 'destroy']);
+//Route::delete('/api/authors', [AuthorController::class, 'destroy']);
 Route::get('/api/authors', [AuthorController::class, 'show']);
 
 
@@ -63,6 +63,8 @@ Route::get('/api/authors', [AuthorController::class, 'show']);
 //ova ruta mozda nece da nam treba, ali neka je zakomentarisana za svaki slucaj
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::group(['middleware' => ['admin']], function () {
         

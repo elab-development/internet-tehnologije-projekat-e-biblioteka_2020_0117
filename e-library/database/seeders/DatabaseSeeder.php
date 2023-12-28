@@ -38,11 +38,11 @@ class DatabaseSeeder extends Seeder
        
 
 
-        //User::factory(5)->create();
+        User::factory(5)->create();
        //Genre::factory(5)->create();
        // Author::factory(5)->create();
             //ovo za Genre nece da radi jer iz nekog razloga hoce da ubaci kolone uipdated_at i created_at a one ne postoje u modelu
 
-
+//napraviti call metodu koja zove ostale seedere
     }
 }

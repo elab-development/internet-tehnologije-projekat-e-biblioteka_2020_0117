@@ -48,7 +48,7 @@ class FavBookController extends Controller
 
         $favBook = FavBook::create([
             'book_id' => $request->book_id,
-            'user_id' => auth()->user()->user_id
+            'user_id' => auth()->user()->user_id//id
         ]);
 
         return response()->json(['Favourite book created successfully.', new FavBookResource($favBook), 'success' => true]);
