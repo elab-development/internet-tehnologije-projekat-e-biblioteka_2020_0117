@@ -1,0 +1,50 @@
+/* Stilizacija za kontejner fajlova */
+.file-container {
+    display: flex;
+    flex-direction: row; /* Postavljanje fajlova u redove */
+    flex-wrap: wrap; /* Dozvoljava prelazak na novi red ako nema dovoljno mesta */
+    align-items: center; /* Centriranje po vertikali */
+    justify-content: center; /* Centriranje po horizontali */
+    padding: 10px;
+    margin-left: 50px;
+  }
+  
+  /* Stilizacija za fajl */
+  .file {
+    width: 30%; /* Podešavanje širine fajla, možete prilagoditi ovo prema želji */
+    margin: 10px; /* Dodajte dodatni razmak između fajlova */
+  }
+  
+  /* Stilizacija za telo fajla */
+  .file-body {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Stilizacija za dugmad */
+  .btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  /* Stilizacija za dugme "Read book" */
+  .read-btn {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  /* Stilizacija za dugme "Like File" */
+  .like-btn {
+    background-color: #ecf0f1;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+  
+  /* Stilizacija za promenu boje srca na klik */
+  .like-btn.clicked {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  
