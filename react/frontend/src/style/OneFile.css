@@ -42,9 +42,11 @@
   }
   
   /* Stilizacija za promenu boje srca na klik */
-  .like-btn.clicked {
+  .hearthBtn.clicked {
     background-color: #e74c3c;
     color: #fff;
   }
+
+
   
   
