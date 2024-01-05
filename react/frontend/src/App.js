@@ -35,8 +35,8 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
-       <Files files = {files}/>
-      
+       {/* <Files files = {files}/> */}
+      <Login/>
     </div>
   );
 }
