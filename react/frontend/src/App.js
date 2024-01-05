@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Files from './components/Files';
 import Login from './components/Login';
 import Register from './components/Register';
+import Payment from './components/Payment';
 
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
-       {/* <Files files = {files}/> */}
-      <Login/>
+       <Files files = {files}/>
+      
     </div>
   );
 }
