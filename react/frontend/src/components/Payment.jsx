@@ -10,7 +10,7 @@ const Payment = () => {
      <div className="row">
   <div className="col-75">
     <div className="container">
-      <form action="/action_page.php">
+      <form action="">
 
         <div className="row">
         

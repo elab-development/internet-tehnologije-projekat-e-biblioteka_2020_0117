@@ -6,6 +6,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Payment from './components/Payment';
 import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import User from './components/User'
+
 
 
 function App() {
@@ -35,15 +38,36 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <BrowserRouter>
       <NavBar/>
-      {/*<Payment/>
-      */} 
-      <Files files = {files}/>
+
+      <Routes>
+
+      <Route
+          path="/files"
+          element={
+            <Files files = {files}/>
+          }
+        />
+
+      <Route path="/payment" element={<Payment/>} />
+        
+      {/*<Payment/>*/} 
+      
+      <Route path="/user" element={<User/>} />
+      <Route path="/register" element={<Register/>} />
+      <Route path="/" element={<Login/>} />
+
+      
+
+      </Routes>
+      
+
+
       <Footer/>
       
 
-    </div>
+      </BrowserRouter>
   );
 }
 
