@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-//import axios from "axios"
+import axios from "axios"
 import "../style/Login.css"
 import { useNavigate } from 'react-router-dom'
 
@@ -8,37 +8,37 @@ import { useNavigate } from 'react-router-dom'
 
 const LoginPage = ({addToken, addUser}) => {
 
-    // let navigate=useNavigate();
+     let navigate=useNavigate();
 
-    // const[userData, setUserData] =useState({
-    //     email:"",
-    //     password:"",
-    // });
+     const[user, setUser] =useState({
+         email:"",
+         password:"",
+     });
 
-    // function handleInput(e){
-    //     let newUserData=userData;
-    //     newUserData[e.target.name]=e.target.value;
-    //    setUserData(newUserData);
-    // }
+     function handleInput(e){
+         let newUser=user;
+         newUser[e.target.name]=e.target.value;
+        setUser(newUser);
+    }
 
-    // function handleLogin(e){
-    //     e.preventDefault();
+     function handleLogin(e){
+         e.preventDefault();
        
-    //     axios.post("http://127.0.0.1:8000/api/login",userData).
-    //     then((res)=>
-    //     {
-    //         console.log(res.data);
-    //         if(res.data.success===true) {
-    //            window.sessionStorage.setItem("auth_token",res.data.access_token);
-    //             console.log(res.data);
-    //             addToken(res.data.access_token);
-    //             addUser(userData);
-    //             navigate("/Files");
-    //         }
+         axios.post("http://127.0.0.1:8000/api/login",user).
+         then((res)=>
+         {
+             console.log(res.data);
+             if(res.data.success===true) {
+                window.sessionStorage.setItem("auth_token",res.data.access_token);
+                 console.log(res.data);
+                 addToken(res.data.access_token);
+                 addUser(user);
+                 navigate("/Files");
+             }
 
-    //     }).
-    //     catch((e)=>{console.log(e);});
-    // }
+         }).
+         catch((e)=>{console.log(e);});
+     }
 
 return (
   
@@ -51,7 +51,7 @@ return (
             <div className="card-body p-5 text-center">
 
                 <form 
-                // onSubmit={handleLogin}
+                  onSubmit={handleLogin}
                 >
                     <div className="mb-md-5 mt-md-4 pb-5">
 
@@ -62,14 +62,14 @@ return (
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeEmailX" >Email</label>
                             <input type="text" id="typeEmailX" className="form-control form-control-lg" name="email" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             /> 
                         </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typePasswordX">Password</label>
                             <input type="password" id="typePasswordX" className="form-control form-control-lg" name="password" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             />
                         </div>
 

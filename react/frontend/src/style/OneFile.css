@@ -47,6 +47,20 @@
     color: #fff;
   }
 
+  .hearthBtn.red {
+    background-color: red; /* Promenite ovo u željenu boju za stanje 'red' */
+  }
+  
+  .hearthBtn.white {
+    background-color: white; /* Promenite ovo u željenu boju za stanje 'white' */
+  }
+
+  .hearthBtn .react-icons-fc-like {
+    /* Dodajte stilove za ikonu srca */
+    /* Na primer, možete postaviti boju */
+    color: inherit !important;
+  }
+
 
   
   
