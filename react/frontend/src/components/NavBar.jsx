@@ -1,9 +1,8 @@
 import React from 'react'
-//import Mbooks from "../Mbooks.png"
 import "../style/NavBar.css"
-//import axios from 'axios'
+import axios from 'axios'
 import { Outlet } from 'react-router-dom'
-//import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const NavBar = () => {
 
@@ -13,11 +12,11 @@ const NavBar = () => {
         
     <div className="nav">
         <ul>
-            <li><a href="">Books</a></li>
-            <li><a href="">Profile</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Payment</a></li>
-            <li><a href="">Logout</a></li>
+            <li><Link to='/files' className="nav-link">Home</Link></li>
+            <li><Link to='/user' className="nav-link">Profile</Link></li>
+            <li>  <Link to='/contact' className="nav-link">Contact</Link></li>
+            <li><Link to='/payment' className="nav-link">Payment</Link></li>
+            <li><Link to='/logout' className="nav-link">Logout</Link></li>
             <li className="nav-item search-icon">
                <button className="search-button"><i className="fas fa-search">Search</i></button>
             </li>
