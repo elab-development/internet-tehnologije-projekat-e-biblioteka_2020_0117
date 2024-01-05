@@ -14,9 +14,7 @@ const NavBar = () => {
             <a rel="stylesheet" href="NavBar.css"></a>
             <div className="container-fluid">
             {/* <img src={Mbooks} style={{height:70+"px", width:70+"px" }} /> */}
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
-                {/* <span className="navbar-toggler-icon"></span> */}
-                </button>
+                
                 <div className="collapse navbar-collapse show" id="navbarDark">
                 <ul className="navbar-nav me-auto mb-2 mb-xl-0">
                     <li className="nav-item">

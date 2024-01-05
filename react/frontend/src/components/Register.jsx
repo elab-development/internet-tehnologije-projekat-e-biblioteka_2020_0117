@@ -1,36 +1,36 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from "axios"
+//import axios from "axios"
 import "../style/Login.css"
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
-    let navigate=useNavigate();
+    // let navigate=useNavigate();
 
-    const[userData, setUserData] =useState({
-        name:"",
-        email:"",
-        password:"",
-    });
+    // const[userData, setUserData] =useState({
+    //     name:"",
+    //     email:"",
+    //     password:"",
+    // });
 
-    function handleInput(e){
-        let newUserData=userData;
-        newUserData[e.target.name]=e.target.value;
-       setUserData(newUserData);
-    }
+    // function handleInput(e){
+    //     let newUserData=userData;
+    //     newUserData[e.target.name]=e.target.value;
+    //    setUserData(newUserData);
+    // }
 
-    function handleRegister(e){
-        e.preventDefault();
-        axios.post("http://127.0.0.1:8000/api/register",userData).
-        then((res)=>
-        {
-            console.log(res.data);
-           navigate("/login")
+    // function handleRegister(e){
+    //     e.preventDefault();
+    //     axios.post("http://127.0.0.1:8000/api/register",userData).
+    //     then((res)=>
+    //     {
+    //         console.log(res.data);
+    //        navigate("/login")
 
-        }).
-        catch((e)=>{console.log(e);});
-    }
+    //     }).
+    //     catch((e)=>{console.log(e);});
+    // }
 
 
   return (
@@ -42,7 +42,9 @@ const Register = () => {
             <div className="card bg-dark text-white" style={{borderRadius: 1+"rem"}}>
             <div className="card-body p-4 text-center">
 
-                <form onSubmit={handleRegister}>
+                <form
+                //  onSubmit={handleRegister}
+                 >
                     <div className="mb-md-5 mt-md-4 pb-5">
 
                         {/* <img src={Mbooks} alt="Logo" style={{height:130+"px", width:130+"px" }}></img> */}  
@@ -51,17 +53,23 @@ const Register = () => {
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeNameX" >Name</label>
-                            <input type="text" id="typeNameX" className="form-control form-control-lg" name="name" onInput={handleInput} /> 
+                            <input type="text" id="typeNameX" className="form-control form-control-lg" name="name" 
+                            // onInput={handleInput} 
+                            /> 
                         </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeEmailX" >Email</label>
-                            <input type="text" id="typeEmailX" className="form-control form-control-lg" name="email" onInput={handleInput} /> 
+                            <input type="text" id="typeEmailX" className="form-control form-control-lg" name="email" 
+                            // onInput={handleInput} 
+                            /> 
                         </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typePasswordX">Password</label>
-                            <input type="password" id="typePasswordX" className="form-control form-control-lg" name="password" onInput={handleInput} />
+                            <input type="password" id="typePasswordX" className="form-control form-control-lg" name="password" 
+                            // onInput={handleInput} 
+                            />
                         </div>
 
                         <button className="btn btn-outline-light btn-lg px-5" type="submit" >Register</button>   
