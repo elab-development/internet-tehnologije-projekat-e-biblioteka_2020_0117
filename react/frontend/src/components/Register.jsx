@@ -57,6 +57,12 @@ const Register = () => {
                             // onInput={handleInput} 
                             /> 
                         </div>
+                        <div className="form-outline form-white mb-4">
+                            <label className="form-label" htmlFor="typeNameX" >Username</label>
+                            <input type="text" id="typeNameX" className="form-control form-control-lg" userName="userName" 
+                            // onInput={handleInput} 
+                            /> 
+                        </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeEmailX" >Email</label>
