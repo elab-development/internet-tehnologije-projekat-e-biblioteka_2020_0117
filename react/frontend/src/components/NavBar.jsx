@@ -23,7 +23,7 @@ const NavBar = () => {
             <li className="nav-item search-icon">
           <input
             type="text"
-            placeholder="Unesite tekst"
+            placeholder="Insert text for searching..."
             className="search-input"
           />
         </li>

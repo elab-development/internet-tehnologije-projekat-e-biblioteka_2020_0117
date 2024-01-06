@@ -26,15 +26,26 @@ const Files = ({ files }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 2; // Max broj knjiga po stranici
 
-  
+  const [filteredFiles, setFilteredFiles] = useState([]);
+const [searchTerm, setSearchTerm] = useState('');
+
+useEffect(() => {
+  // Filtriranje fajlova kada se searchTerm promeni
+  const filtered = files.filter((file) =>
+    file.bookName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setFilteredFiles(filtered);
+}, [files, searchTerm]);
 
   const pageCount = Math.ceil(files.length / itemsPerPage);
 
   const displayFiles = () => {
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return files.slice(startIndex, endIndex).map((file) => (
+    return filteredFiles.slice(startIndex, endIndex).map((file) => (
       <OneFile key={file.id} file={file} />
+      
     ));
   };
 
@@ -54,6 +65,21 @@ const Files = ({ files }) => {
 
   return (
     <div>
+
+         {/* Pretraga */}
+      <input
+        type="text"
+        placeholder="Search files (name)"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+            margin: '10px',
+            padding: '8px', 
+            width: '30%',   
+            display: 'block', 
+            margin: '0 auto', 
+          }}
+      />
       {displayFiles()}
 
     
