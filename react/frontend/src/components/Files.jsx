@@ -20,6 +20,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import OneFile from './OneFile';
+import "../style/Files.css";
 
 const Files = ({ files }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -68,12 +69,12 @@ const Files = ({ files }) => {
       />
 
       
-      <button onClick={handlePrevClick} disabled={currentPage === 0}>
+      {/* <button onClick={handlePrevClick} disabled={currentPage === 0}>
         Previous
       </button>
       <button onClick={handleNextClick} disabled={currentPage === pageCount - 1}>
         Next
-      </button>
+      </button> */}
     </div>
   );
 };
