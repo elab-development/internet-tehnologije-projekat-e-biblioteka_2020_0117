@@ -8,7 +8,7 @@ import Payment from './components/Payment';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from './components/User'
-
+import Contact from './components/Contact';
 
 
 function App() {
@@ -57,6 +57,7 @@ function App() {
       <Route path="/user" element={<User/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="/" element={<Login/>} />
+      <Route path="/contact" element={<Contact/>} />
 
       
 
