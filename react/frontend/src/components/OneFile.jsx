@@ -11,7 +11,7 @@ const OneFile = ({file}) => {
   
   const [currentColor, setCurrentColor] = useState('white');
 
-  // Funkcija za promenu boje
+  
   const changeColor = () => {
     const newColor = currentColor === 'red' ? 'white' : 'red';
        setCurrentColor(newColor);

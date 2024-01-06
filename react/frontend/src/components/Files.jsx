@@ -1,22 +1,3 @@
-// import React from 'react'
-// import OneFile from './OneFile'
-
-
-
-// const Files = ({files}) => {
-
-
-
-//     return (
-//         <div>
-//            {files.map((file) =>(<OneFile file = {file}/>))}
-           
-            
-//         </div>
-//     )
-// }
-
-// export default Files
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import OneFile from './OneFile';

@@ -43,8 +43,6 @@ function App() {
   return (
     <BrowserRouter>
       
-
-    
       <Routes>
 
       <Route
@@ -58,7 +56,6 @@ function App() {
             
           }
         />
-
       <Route path="/payment" element={
       <div>
       <NavBar/>
@@ -83,18 +80,11 @@ function App() {
       <NavBar/>
       <Contact/>
       </div>
-      
-    
     } />
-
-      
-
       </Routes>
       
-
       <Online/>
       <Footer/>
-      
 
       </BrowserRouter>
   );

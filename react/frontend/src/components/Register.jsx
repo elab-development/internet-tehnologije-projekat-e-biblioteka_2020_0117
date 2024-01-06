@@ -8,21 +8,22 @@ const Register = () => {
 
     // let navigate=useNavigate();
 
-    // const[userData, setUserData] =useState({
+    // const[userData, setUser] =useState({
     //     name:"",
+    //     username: "",
     //     email:"",
     //     password:"",
     // });
 
     // function handleInput(e){
-    //     let newUserData=userData;
-    //     newUserData[e.target.name]=e.target.value;
-    //    setUserData(newUserData);
+    //     let newUser=user;
+    //     newUser[e.target.name]=e.target.value;
+    //    setUser(newUser);
     // }
 
     // function handleRegister(e){
     //     e.preventDefault();
-    //     axios.post("http://127.0.0.1:8000/api/register",userData).
+    //     axios.post("http://127.0.0.1:8000/api/register",user).
     //     then((res)=>
     //     {
     //         console.log(res.data);

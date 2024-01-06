@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const LoginPage = ({addToken, addUser}) => {
+const Login = ({addToken, addUser}) => {
 
      let navigate=useNavigate();
 
@@ -92,4 +92,4 @@ return (
   )
 }
 
-export default LoginPage
+export default Login
