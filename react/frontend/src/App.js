@@ -9,6 +9,9 @@ import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from './components/User'
 import Contact from './components/Contact';
+import Online from './components/Online';
+import Welcome from './components/Welcome';
+
 
 
 function App() {
@@ -41,12 +44,17 @@ function App() {
     <BrowserRouter>
       <NavBar/>
 
+    
       <Routes>
 
       <Route
           path="/files"
           element={
+            <div>
+              <Welcome/>
             <Files files = {files}/>
+            </div>
+            
           }
         />
 
@@ -64,7 +72,7 @@ function App() {
       </Routes>
       
 
-
+      <Online/>
       <Footer/>
       
 
