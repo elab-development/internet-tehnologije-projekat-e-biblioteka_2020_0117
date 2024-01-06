@@ -1,6 +1,38 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
+import axios from 'axios';
 import "../style/Contact.css";
+
+const Citat = () => {
+  const [citat, setCitat] = useState('');
+
+  useEffect(() => {
+    const povuciCitat = async () => {
+      try {
+        const odgovor = await axios.get('https://api.quotable.io/random');
+        
+        // Ako API odgovara objektom koji ima svojstvo "content"
+        if (odgovor.data && odgovor.data.content) {
+          setCitat(odgovor.data.content);
+        } else {
+          console.error('Neispravan format odgovora API-ja:', odgovor.data);
+        }
+      } catch (error) {
+        console.error('Greška pri povlačenju citata:', error);
+      }
+    };
+
+    povuciCitat();
+  }, [setCitat]);
+
+  console.log('Citat:', citat); // Dodato praćenje u konzolu
+
+  return (
+    <div>
+      <blockquote>{citat}</blockquote>
+    </div>
+  );
+};
 
 const Contact = () => {
   const { isLoaded } = useLoadScript({
@@ -9,20 +41,60 @@ const Contact = () => {
   const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
   return (
-    <div className="App">
-      {!isLoaded ? (
-        <h1>Loading...</h1>
-      ) : (
-        <GoogleMap
-          mapContainerClassName="map-container"
-          center={center}
-          zoom={10}
-        >
-          <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
-        </GoogleMap>
-      )}
+    <div>
+       <Citat />
+      <div className="App">
+        {!isLoaded ? (
+          <h1>Loading...</h1>
+        ) : (
+          <GoogleMap
+            mapContainerClassName="map-container"
+            center={center}
+            zoom={10}
+          >
+            <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
+          </GoogleMap>
+        )}
+      </div>
+
+     
     </div>
   );
 };
 
 export default Contact;
+
+
+
+// const Contact = () => {
+//   const { isLoaded } = useLoadScript({
+//     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+//   });
+//   const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
+
+//   return (
+//     <div>
+//     <div className="App">
+//       {!isLoaded ? (
+//         <h1>Loading...</h1>
+//       ) : (
+//         <GoogleMap
+//           mapContainerClassName="map-container"
+//           center={center}
+//           zoom={10}
+//         >
+//           <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
+//         </GoogleMap>
+//       )}
+//     </div>
+//         {/* quote ide ovde */}
+
+
+
+
+
+//     </div>
+//   );
+// };
+
+// export default Contact;
