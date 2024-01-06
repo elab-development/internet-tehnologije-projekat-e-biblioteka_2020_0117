@@ -93,7 +93,9 @@ useEffect(() => {
          previousLabel={'previous'}
          nextLabel={'next'}
       />
-
+        {/*To do za projekat - napraviti ogroman JOIN u laravelu da obuhvata fajlove, autore i zanrove i da se prosledi ovde i da se search deo u navbaru 
+        podesi slicno kao i ovo polje u Files fajlu ali da pretrazuje po celom tom JOIN-u (autor, zanr i knjiga imena)*/ }
+        
       {/*Gledali smo i u delu node_modules/react-paginate da nadjemo markere i da ih sklonimo sa dugmiadi next, previous itd ali nismo ih nasli*/ }
 
 
