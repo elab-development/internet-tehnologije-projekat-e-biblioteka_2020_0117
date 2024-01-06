@@ -68,7 +68,10 @@ const Files = ({ files }) => {
          nextLabel={'next'}
       />
 
-      
+      {/*Gledali smo i u delu node_modules/react-paginate da nadjemo markere i da ih sklonimo sa dugmiadi next, previous itd ali nismo ih nasli*/ }
+
+
+      {/*ovo je pokusaj zamene dugmadi koje su defaultno date sa paginacijom ali nismo uspeli da obrisemo te default dugmice*/}
       {/* <button onClick={handlePrevClick} disabled={currentPage === 0}>
         Previous
       </button>

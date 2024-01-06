@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar/>
+      
 
     
       <Routes>
@@ -51,6 +51,7 @@ function App() {
           path="/files"
           element={
             <div>
+              <NavBar/>
               <Welcome/>
             <Files files = {files}/>
             </div>
@@ -58,14 +59,33 @@ function App() {
           }
         />
 
-      <Route path="/payment" element={<Payment/>} />
+      <Route path="/payment" element={
+      <div>
+      <NavBar/>
+      <Payment/>
+      </div>
+      } />
         
       {/*<Payment/>*/} 
       
-      <Route path="/user" element={<User/>} />
+      <Route path="/user" element={
+      <div>
+      <NavBar/>
+      <User/>
+      <Files files = {files}/>
+      </div>
+      
+      } />
       <Route path="/register" element={<Register/>} />
       <Route path="/" element={<Login/>} />
-      <Route path="/contact" element={<Contact/>} />
+      <Route path="/contact" element={
+      <div>
+      <NavBar/>
+      <Contact/>
+      </div>
+      
+    
+    } />
 
       
 

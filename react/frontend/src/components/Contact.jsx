@@ -11,7 +11,7 @@ const Citat = () => {
       try {
         const odgovor = await axios.get('https://api.quotable.io/random');
         
-        // Ako API odgovara objektom koji ima svojstvo "content"
+       
         if (odgovor.data && odgovor.data.content) {
           setCitat(odgovor.data.content);
         } else {
@@ -25,7 +25,7 @@ const Citat = () => {
     povuciCitat();
   }, [setCitat]);
 
-  console.log('Citat:', citat); // Dodato praćenje u konzolu
+  
 
   return (
     <div>
