@@ -3,6 +3,8 @@ import { useMemo, useState, useEffect } from "react";
 import axios from 'axios';
 import "../style/Contact.css";
 import MapComponent from './MapComponent';
+import Advice from "./Advice";
+import UseAdvice from './UseAdvice';
 
 const Citat = () => {
   const [citat, setCitat] = useState('');
@@ -62,6 +64,7 @@ const Contact = () => {
           </GoogleMap>
         )}
         </div>  */}
+        <Advice />
         <MapComponent />
 
      
