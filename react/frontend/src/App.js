@@ -11,10 +11,65 @@ import User from './components/User'
 import Contact from './components/Contact';
 import Online from './components/Online';
 import Welcome from './components/Welcome';
+import { useState, useEffect } from 'react';
+import axios from "axios";
 
 
 
 function App() {
+
+  const [token,setToken]=useState();
+
+  function addToken(auth_token){
+      setToken(auth_token);
+  }
+
+  function removeToken(){
+      setToken(null);
+      setCurrentUser(null);
+      
+  }
+
+  const [users, setUsers]=useState();
+  useEffect(()=>{
+      if(users==null){
+          axios.get("http://127.0.0.1:8000/api/users").then((res)=>{
+              console.log(res.data);
+              setUsers(res.data.users);
+          });
+      }
+  },[users]);
+
+  // const [userData, setUserData] = useState();
+  // useEffect(()=>{
+  //     if(userData==null){
+  //         axios.get("http://127.0.0.1:8000/api/data").then((res)=>{
+  //             console.log(res.data);
+  //             setUserData(res.data.userData);
+  //         });
+  //     }
+  // },[userData]);
+
+  //logged user data
+  //const [currentUserData, setCurrentUserData] = useState();
+
+  
+  //logged user
+  const [currentUser, setCurrentUser] = useState();
+
+  function addUser(u){ 
+      if(users != null){
+          users.map((user) =>{
+              if(user.email == u.email){
+                  setCurrentUser(user);
+                  console.log(user);
+                  
+                  setCurrentUser(user);
+                  //loadFavourites();
+              };
+          });
+      };
+  }
 
   const files = [
     {
@@ -74,7 +129,7 @@ function App() {
       
       } />
       <Route path="/register" element={<Register/>} />
-      <Route path="/" element={<Login/>} />
+      <Route path="/" element={<Login addToken={addToken} addUser={addUser}/>} />
       <Route path="/contact" element={
       <div>
       <NavBar/>

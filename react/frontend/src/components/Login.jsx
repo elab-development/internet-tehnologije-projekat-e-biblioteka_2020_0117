@@ -31,9 +31,10 @@ const Login = ({addToken, addUser}) => {
              if(res.data.success===true) {
                 window.sessionStorage.setItem("auth_token",res.data.access_token);
                  console.log(res.data);
+                 //console.log('asdasd');
                  addToken(res.data.access_token);
                  addUser(user);
-                 navigate("/Files");
+                 navigate("/files");
              }
 
          }).
@@ -73,7 +74,7 @@ return (
                             />
                         </div>
 
-                        <button className="btn btn-outline-light btn-lg px-5" type="submit" >Login</button>   
+                        <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>   
 
                     </div>
 

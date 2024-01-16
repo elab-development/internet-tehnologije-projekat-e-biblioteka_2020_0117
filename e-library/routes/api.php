@@ -35,8 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user', [UserController::class, 'show']);  
 
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+
 
 
 Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
@@ -61,6 +60,10 @@ Route::get('/api/authors', [AuthorController::class, 'show']);
 
 //Route::resource('/books', BookController::class)->only(['index', 'show']);;
 //ova ruta mozda nece da nam treba, ali neka je zakomentarisana za svaki slucaj
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/users', [UserController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
