@@ -36,7 +36,7 @@ const Citat = () => {
 
 const Contact = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
   const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
