@@ -59,6 +59,21 @@ function App() {
       };
   }
 
+  function updateUser(newUser){
+    setCurrentUser(newUser);
+    if(currentUser != null){
+        let newUser = currentUser;
+        if(currentUser == null){
+            newUser= newUser.id;
+        }
+        newUser.email = newUser.email;
+        newUser.name = newUser.name;
+        newUser = newUser.id;
+        setCurrentUser(newUser);
+        
+        }
+      }
+
   const files = [
     {
       

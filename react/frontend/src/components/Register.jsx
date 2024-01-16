@@ -1,37 +1,37 @@
 import React from 'react'
 import { useState } from 'react'
-//import axios from "axios"
+import axios from "axios"
 import "../style/Login.css"
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
-    // let navigate=useNavigate();
+    let navigate=useNavigate();
 
-    // const[userData, setUser] =useState({
-    //     name:"",
-    //     username: "",
-    //     email:"",
-    //     password:"",
-    // });
+     const[user, setUser] =useState({
+         name:"",
+        username: "",
+        email:"",
+         password:"",
+ });
 
-    // function handleInput(e){
-    //     let newUser=user;
-    //     newUser[e.target.name]=e.target.value;
-    //    setUser(newUser);
-    // }
+     function handleInput(e){
+         let newUser=user;
+         newUser[e.target.name]=e.target.value;
+        setUser(newUser);
+     }
 
-    // function handleRegister(e){
-    //     e.preventDefault();
-    //     axios.post("http://127.0.0.1:8000/api/register",user).
-    //     then((res)=>
-    //     {
-    //         console.log(res.data);
-    //        navigate("/login")
+     function handleRegister(e){
+         e.preventDefault();
+         axios.post("http://127.0.0.1:8000/api/register",user).
+         then((res)=>
+         {
+             console.log(res.data);
+            navigate("/")
 
-    //     }).
-    //     catch((e)=>{console.log(e);});
-    // }
+         }).
+         catch((e)=>{console.log(e);});
+     }
 
 
   return (
@@ -44,38 +44,38 @@ const Register = () => {
             <div className="card-body p-4 text-center">
 
                 <form
-                //  onSubmit={handleRegister}
+                 onSubmit={handleRegister}
                  >
                     <div className="mb-md-5 mt-md-4 pb-5">
 
-                        {/* <img src={Mbooks} alt="Logo" style={{height:130+"px", width:130+"px" }}></img> */}  
+                      
                         <p className="text-white-50 mb-5">Please enter your information</p>
 
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeNameX" >Name</label>
                             <input type="text" id="typeNameX" className="form-control form-control-lg" name="name" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             /> 
                         </div>
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeNameX" >Username</label>
                             <input type="text" id="typeNameX" className="form-control form-control-lg" name="username" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             /> 
                         </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typeEmailX" >Email</label>
                             <input type="text" id="typeEmailX" className="form-control form-control-lg" name="email" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             /> 
                         </div>
 
                         <div className="form-outline form-white mb-4">
                             <label className="form-label" htmlFor="typePasswordX">Password</label>
                             <input type="password" id="typePasswordX" className="form-control form-control-lg" name="password" 
-                            // onInput={handleInput} 
+                             onInput={handleInput} 
                             />
                         </div>
 
