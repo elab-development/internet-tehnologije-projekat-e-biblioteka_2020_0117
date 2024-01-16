@@ -17,7 +17,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
+            //'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8'
         ]);
@@ -29,7 +29,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'surname' => $request->surname,
+            //'surname' => $request->surname,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
@@ -68,7 +68,7 @@ public function logout(Request $request)
     {
         //$PRO = $request;
         //echo $PRO;
-       //$request->user()->tokens()->delete();
+       $request->user()->tokens()->delete();
        //$request->user()->tokens()->delete();
 
        //return response()->json(['message'=> 'Successfully logged out!']);
