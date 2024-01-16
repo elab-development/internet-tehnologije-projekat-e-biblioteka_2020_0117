@@ -40,19 +40,7 @@ function App() {
       }
   },[users]);
 
-  // const [userData, setUserData] = useState();
-  // useEffect(()=>{
-  //     if(userData==null){
-  //         axios.get("http://127.0.0.1:8000/api/data").then((res)=>{
-  //             console.log(res.data);
-  //             setUserData(res.data.userData);
-  //         });
-  //     }
-  // },[userData]);
-
-  //logged user data
-  //const [currentUserData, setCurrentUserData] = useState();
-
+  
   
   //logged user
   const [currentUser, setCurrentUser] = useState();
@@ -104,7 +92,7 @@ function App() {
           path="/files"
           element={
             <div>
-              <NavBar/>
+              <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
               <Welcome/>
             <Files files = {files}/>
             </div>
@@ -113,7 +101,7 @@ function App() {
         />
       <Route path="/payment" element={
       <div>
-      <NavBar/>
+      <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <Payment/>
       </div>
       } />
@@ -122,7 +110,7 @@ function App() {
       
       <Route path="/user" element={
       <div>
-      <NavBar/>
+      <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <User/>
       <Files files = {files}/>
       </div>
@@ -132,7 +120,7 @@ function App() {
       <Route path="/" element={<Login addToken={addToken} addUser={addUser}/>} />
       <Route path="/contact" element={
       <div>
-      <NavBar/>
+      <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <Contact/>
       </div>
     } />
