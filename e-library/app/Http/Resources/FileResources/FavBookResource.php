@@ -21,7 +21,7 @@ class FavBookResource extends JsonResource
         return [
             
             'user' => new UserResource($this->resource->user),
-            'book' => new BookResource($this->resource->book)
+            'file' => new FileResource($this->resource->file)
         ];
     }
 }
