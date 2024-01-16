@@ -11,7 +11,7 @@ class FavBook extends Model
 
     protected $fillable = [
         
-        'book_id',
+        'file_id',
         'user_id'
         
     ];
@@ -22,7 +22,7 @@ class FavBook extends Model
  
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(File::class);
     }
 
     

@@ -21,7 +21,7 @@ class Genre extends Model
 
     public function books()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(File::class);
     }
     
     protected $primaryKey = 'genre_id';
