@@ -74,29 +74,55 @@ function App() {
         }
       }
 
-  const files = [
-    {
+  // const files = [
+  //   {
       
-      bookName: "Book 1",
-      authorName: "Author 1",
-      genreName: "Genre 1",
+  //     bookName: "Book 1",
+  //     authorName: "Author 1",
+  //     genreName: "Genre 1",
       
-    },
-    {
+  //   },
+  //   {
       
-      bookName: "Book 2",
-      authorName: "Author 2",
-      genreName: "Genre 2",
+  //     bookName: "Book 2",
+  //     authorName: "Author 2",
+  //     genreName: "Genre 2",
       
-    },
-    {
+  //   },
+  //   {
       
-      bookName: "Book 3",
-      authorName: "Author 3",
-      genreName: "Genre 3",
+  //     bookName: "Book 3",
+  //     authorName: "Author 3",
+  //     genreName: "Genre 3",
       
-    }
-  ];
+  //   }
+  // ];
+
+  const [files, setFiles] = useState({
+    data: [],
+    loading: true,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/allFiles");
+        
+        console.log("Full response object:", response);
+  
+        setFiles({
+          data: response.data,
+          loading: false
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    // Pozivamo funkciju za dohvat podataka
+    fetchData();
+  }, []);
+ 
 
   return (
     <BrowserRouter>

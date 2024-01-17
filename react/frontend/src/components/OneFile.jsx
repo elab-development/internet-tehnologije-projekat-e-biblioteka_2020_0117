@@ -23,11 +23,11 @@ const OneFile = ({file}) => {
      <div className="file-container">
       
        <div className="file-body">
-         <h3 className="file-name">{file.bookName}</h3>
+         <h3 className="file-name">{file.fileName}</h3>
          <h3 className="file-author">{file.authorName}</h3>
          <h3 className="file-genre">{file.genreName}</h3>
          <p className="file-description">
-           File description where we can read more details about it.
+           {file.description}
          </p>
          <button className="btn">Read book</button>
          
