@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('favourite_books', function (Blueprint $table) {
             
             $table->foreignId('user_id');
-            $table->foreignID('book_id');
+            $table->foreignID('file_id');
             
         });
 

@@ -76,6 +76,7 @@ class FileUpload extends Controller
         $result = [];
         foreach ($fileData as $file) {
             $result[] = [
+                'file_id' => $file->id,
                 'fileName' => $file->name,
                 'authorName' => $file->author_name,
                 'genreName' => $file->genre_name,

@@ -17,16 +17,18 @@ class FavBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)//userov id se prosledjuje
     {
-        $user_id = auth()->user()->id;
+       
         //$user = $request->user;
         //$user_id = $user->id;
-        $books = FavBook::get()->where('user_id', $user_id);
+        $books = FavBook::get()->where('user_id', $id)->pluck('book_id');
         if (is_null($books)) {
-            return response()->json('Data not found', 404);
+            return response()->json('There are no such files', 404);
         }
-        return new FavBookCollection($books);
+        //return new FavBookCollection($books);
+        return $books;
+
     }
 
     /**
@@ -39,7 +41,8 @@ class FavBookController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'book_id' => 'required'
+            'file_id' => 'required',
+            'user_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -47,8 +50,8 @@ class FavBookController extends Controller
         }
 
         $favBook = FavBook::create([
-            'book_id' => $request->book_id,
-            'user_id' => auth()->user()->user_id//id
+            'file_id' => $request->file_id,
+            'user_id' => $request->id//mozda treba user_id
         ]);
 
         return response()->json(['Favourite book created successfully.', new FavBookResource($favBook), 'success' => true]);
@@ -77,13 +80,15 @@ class FavBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($favBook_id)
+    public function destroy(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $favBook = FavBook::get()->where('id', '=',$favBook_id)->where('user_id','=',$user_id)->first();
-        //ovo sa = je rekao chat gpt da treba
+        $file_id = $request->file_id;
+        $user_id = $request->id;//mozda user_id
+
+        $favBook = FavBook::get()->where('file_id', '=',$file_id)->where('user_id','=',$id)->first();
+        
         if (!$favBook) {
-            return response()->json('Data not found', 404);
+            return response()->json('There is no such favourite book', 404);
         }
 
         $favBook->delete();

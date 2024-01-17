@@ -53,6 +53,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/allFiles', [FileUpload::class, 'getAllFilesGenreAuthorName']);
+Route::get('/getFavBooks/{id}', [FavBookController::class, 'index']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -61,6 +62,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', [UserController::class, 'show']); 
     Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
     Route::post('/storeFavBook', [FavBookController::class, 'store']);
+    
 
     Route::group(['middleware' => ['admin']], function () {
         

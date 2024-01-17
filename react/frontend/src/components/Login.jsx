@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const Login = ({addToken, addUser}) => {
+const Login = ({addToken, addUser, currentUser}) => {
 
      let navigate=useNavigate();
 
@@ -21,25 +21,48 @@ const Login = ({addToken, addUser}) => {
         setUser(newUser);
     }
 
-     function handleLogin(e){
-         e.preventDefault();
+      function handleLogin(e){
+          e.preventDefault();
        
-         axios.post("http://127.0.0.1:8000/api/login",user).
-         then((res)=>
-         {
-             console.log(res.data);
-             if(res.data.success===true) {
-                window.sessionStorage.setItem("auth_token",res.data.access_token);
-                 console.log(res.data);
-                 //console.log('asdasd');
-                 addToken(res.data.access_token);
-                 addUser(user);
-                 navigate("/files");
-             }
+          axios.post("http://127.0.0.1:8000/api/login",user).
+          then((res)=>
+          {
+              console.log(res.data);
+              if(res.data.success===true) {
+                 window.sessionStorage.setItem("auth_token",res.data.access_token);
+                  console.log(res.data);
+                  //console.log('asdasd');
+                  addToken(res.data.access_token);
+                  addUser(user);
+                  navigate("/files");
+              }
 
-         }).
-         catch((e)=>{console.log(e);});
-     }
+          }).
+          catch((e)=>{console.log(e);});
+      }
+
+    // const handleLogin = async () => {
+    //     try {
+    //       // Ovo može biti promenljiva na primer kao 'response'
+    //       const serverResponse = await axios.post("http://127.0.0.1:8000/api/login", user);
+    //       console.log("Server response:", serverResponse.data);
+    //       const { success, access_token, user: responseUser } = serverResponse.data;
+    
+    //       if (success) {
+    //         window.sessionStorage.setItem("auth_token", access_token);
+    //         addToken(access_token);
+    //         // Postavljanje korisnika nakon uspešnog logovanja
+    //         addUser(responseUser);
+    //         // Preusmeravanje na odgovarajuću stranicu
+    //         navigate("/files");
+    //       } else {
+    //         // Obrada situacije kada logovanje nije uspelo
+    //       }
+    //     } catch (error) {
+    //       console.error("Error during login:", error);
+    //       // Obrada greške prilikom logovanja
+    //     }
+    //   };
 
 return (
   

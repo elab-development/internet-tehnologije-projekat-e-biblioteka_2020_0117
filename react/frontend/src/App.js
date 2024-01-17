@@ -18,6 +18,9 @@ import axios from "axios";
 
 function App() {
 
+
+
+//svi korisnici, tokeni i trenutno ulogovan korisnik
   const [token,setToken]=useState();
 
   function addToken(auth_token){
@@ -42,37 +45,47 @@ function App() {
 
   
   
-  //logged user
+  
   const [currentUser, setCurrentUser] = useState();
 
   function addUser(u){ 
       if(users != null){
-          users.map((user) =>{
-              if(user.email == u.email){
-                  setCurrentUser(user);
-                  console.log(user);
+          // users.find((user) =>{
+          //     if(user.email == u.email){
+          //         setCurrentUser(user);
+          //         console.log(user);
                   
-                  setCurrentUser(user);
-                  //loadFavourites();
-              };
-          });
+          //         setCurrentUser(user);
+          //         console.log("User: " + currentUser);
+          //         loadFavourites();
+          //     };
+          // });
+          const foundUser = users.find(user => user.email === u.email);
+          console.log('asdasd');
+          if (foundUser) {
+            setCurrentUser(foundUser);
+            console.log("User:", foundUser);
+            loadFavourites();
+          }
       };
   }
 
-  function updateUser(newUser){
-    setCurrentUser(newUser);
-    if(currentUser != null){
-        let newUser = currentUser;
-        if(currentUser == null){
-            newUser= newUser.id;
-        }
-        newUser.email = newUser.email;
-        newUser.name = newUser.name;
-        newUser = newUser.id;
-        setCurrentUser(newUser);
+//menjanje podataka o useru
+
+  // function updateUser(newUser){
+  //   setCurrentUser(newUser);
+  //   if(currentUser != null){
+  //       let newUser = currentUser;
+  //       if(currentUser == null){
+  //           newUser= newUser.id;
+  //       }
+  //       newUser.email = newUser.email;
+  //       newUser.name = newUser.name;
+  //       newUser = newUser.id;
+  //       setCurrentUser(newUser);
         
-        }
-      }
+  //       }
+  //     }
 
   // const files = [
   //   {
@@ -98,6 +111,7 @@ function App() {
   //   }
   // ];
 
+  //odavde krece dobijanje svih fajlova (knjiga)
   const [files, setFiles] = useState({
     data: [],
     loading: true,
@@ -114,15 +128,89 @@ function App() {
           data: response.data,
           loading: false
         });
+       
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
   
-    // Pozivamo funkciju za dohvat podataka
+    
     fetchData();
   }, []);
  
+
+  //odavde krecu omiljene knjige
+  // const [favouriteBooks, setFavouriteBooks] = useState([]);
+
+  // function loadFavourites() {
+
+  //   var data = currentUser;
+  //   var id = currentUser.id;
+
+  //   var config = {
+  //       method: 'get',
+  //       url: 'http://127.0.0.1:8000/api/favbooks/' + id,
+  //       headers: { 
+        
+  //       Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
+  //       },
+        
+  //       data : data,
+  //   };
+  //   //ovo iznad vraca niz idjeva knjiga koje su omiljene za korisnika
+  //   axios(config)
+  //   .then(function (response) {
+  //       console.log(JSON.stringify(response.data));
+  //       //setFavouriteBooks(response.data.fav_books);
+
+        
+
+  //   })
+  //   .catch(function (error) {
+  //       console.log(error);
+  //   });
+
+  //   };
+
+  const [favouriteBooks, setFavouriteBooks] = useState([]);
+
+function loadFavourites() {
+  var data = currentUser;
+  var id = currentUser.id;
+  console.log("User id: " + id);
+  var config = {
+    method: 'get',
+    url: 'http://127.0.0.1:8000/api/favbooks/' + id,
+    headers: {
+      Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log("Response data:", response);
+      console.log("asdasd");
+      
+      // Unutar ovog bloka možete proći kroz niz files.data i filtrirati samo omiljene knjige
+      const filteredFiles = files.data.filter(file => {
+        // Proverava da li trenutni file.id postoji u nizu favouriteBooks
+        return response.data.includes(file.id);
+      });
+
+      // Ovde možete postaviti filteredFiles u state ili raditi sa njima kako želite
+      console.log(filteredFiles);
+
+      // Primer postavljanja u state, ali možete prilagoditi kako želite
+      setFavouriteBooks(filteredFiles);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+   
+
 
   return (
     <BrowserRouter>
@@ -135,7 +223,7 @@ function App() {
             <div>
               <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
               <Welcome/>
-            <Files files = {files}/>
+            <Files files = {files.data}/>
             </div>
             
           }
@@ -153,12 +241,12 @@ function App() {
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <User/>
-      <Files files = {files}/>
+      <Files files = {favouriteBooks}/>
       </div>
       
       } />
       <Route path="/register" element={<Register/>} />
-      <Route path="/" element={<Login addToken={addToken} addUser={addUser}/>} />
+      <Route path="/" element={<Login addToken={addToken} addUser={addUser} currentUser={currentUser}/>} />
       <Route path="/contact" element={
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
