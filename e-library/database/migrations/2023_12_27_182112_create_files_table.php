@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('file_path')->nullable();
             $table->timestamps();
             $table->text('description')->nullable();
-            $table->foreignId('author_id');
-            $table->foreignId('genre_id');
+            $table->foreignId('author_id')->nullable();
+            $table->foreignId('genre_id')->nullable();
         });
     }
 
