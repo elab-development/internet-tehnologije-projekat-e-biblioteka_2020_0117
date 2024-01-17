@@ -25,4 +25,8 @@ class FileResource extends JsonResource
             
         ];
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 719fe4622bea2748bd752e188d1fc1c75083daf5

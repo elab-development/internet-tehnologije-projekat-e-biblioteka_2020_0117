@@ -32,24 +32,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route::get('/users', [UserController::class, 'index']);
-Route::get('/user', [UserController::class, 'show']);  
+ 
 
 
 
 
 
-Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
-Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
 
-Route::post('/storeFavBook', [FavBookController::class, 'store']);
-Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
+
+
+
 //ruta za pretrazivanje po 2 kriterijuma
-Route::get('/genresAndAuthors/{author_id,genre_id}',[BookController::class,'searchAuthorGenre']);
+
 //
 //Route::delete('/authors/{author_id}', AuthorController::class,'destroy');//->only(['update', 'store', 'destroy']);//->middleware('admin');
 //Route::delete('/authors/{author_id}', [AuthorController::class, 'destroy']);
 //Route::delete('/api/authors', [AuthorController::class, 'destroy']);
-Route::get('/api/authors', [AuthorController::class, 'show']);
+
 
 
 
@@ -68,17 +67,21 @@ Route::get('/users', [UserController::class, 'index']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [UserController::class, 'show']); 
+    Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
+    Route::post('/storeFavBook', [FavBookController::class, 'store']);
 
     Route::group(['middleware' => ['admin']], function () {
         
         Route::resource('/books', BookController::class)->only(['update', 'store', 'destroy'])->middleware('admin');
-
-        
-        
         Route::resource('/genres/{genre_id}', GenreController::class)->only(['create', 'store'])->middleware('admin');
-    
         Route::put('/update-user', [AuthController::class, 'update']);
 
+        //nisu nesto mnogo bitne rute al neka ih
+        Route::get('/authors/{author_id}', [BookController::class, 'searchAuthor']);
+        Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
+        Route::get('/genresAndAuthors/{author_id,genre_id}',[BookController::class,'searchAuthorGenre']);
+        Route::get('/api/authors', [AuthorController::class, 'show']);
     });
 
     

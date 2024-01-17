@@ -31,7 +31,8 @@
     <div class="container mt-5">
         <form action="{{route('fileUpload')}}" method="post" enctype="multipart/form-data">
           <h3 class="text-center mb-5">Upload Book in Laravel</h3>
-            @csrf
+            @csrf 
+             <!-- @csrf je za zastitu web ruta od CSRF napada, omogucava da samo admini mogu da uploaduju fajl, a ne neko umesto njih-->
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <strong>{{ $message }}</strong>
@@ -54,6 +55,7 @@
                 Upload Files
             </button>
         </form>
+        @
     </div>
 
 </body>
