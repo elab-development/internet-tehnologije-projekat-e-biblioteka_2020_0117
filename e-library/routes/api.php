@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FavBookController;
+use App\Http\Controllers\FileUpload;
 use App\Http\Resources\AuthorResources\AuthorCollection;
 use App\Http\Resources\AuthorResources\AuthorResource;
 use App\Http\Controllers\API\AuthController;
@@ -15,6 +16,7 @@ use App\Http\middleware;
 use App\Http\Resources\GenreResources\GenreCollection;
 use App\Http\Resources\GenreResources\GenreResource;
 use App\Http\Middeware\Admin;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,25 +35,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Route::get('/users', [UserController::class, 'index']);
  
-
-
-
-
-
-
-
-
-
 //ruta za pretrazivanje po 2 kriterijuma
 
 //
 //Route::delete('/authors/{author_id}', AuthorController::class,'destroy');//->only(['update', 'store', 'destroy']);//->middleware('admin');
 //Route::delete('/authors/{author_id}', [AuthorController::class, 'destroy']);
 //Route::delete('/api/authors', [AuthorController::class, 'destroy']);
-
-
-
-
 
 //Route::resource('/users', UserController::class);
 
@@ -63,6 +52,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/allFiles', [FileUpload::class, 'getAllFilesGenreAuthorName']);
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

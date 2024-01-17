@@ -18,15 +18,11 @@ class FileResource extends JsonResource
             
             'file_id' => $this->resource->file_id,
             'name' => $this->resource->name,
-            'num_pages' => $this->resource->num_pages,
+            'description' => $this->resource->description,
             'file_path' => $this->resource->file_path,
-            'genre' => new GenreResource($this->resource->genre),
+            'genre_id' => new GenreResource($this->resource->genre),
             'author_id' => new AuthorResource($this->resource->author),
             
         ];
     }
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 719fe4622bea2748bd752e188d1fc1c75083daf5
+};

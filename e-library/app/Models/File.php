@@ -12,7 +12,7 @@ class File extends Model
         'file_id',
         'name',
         'file_path',
-        'num_pages',
+        'description',
         'author_id',
         'genre_id'
     ];
