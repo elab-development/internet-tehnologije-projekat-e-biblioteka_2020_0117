@@ -20,3 +20,8 @@ use App\Http\Controllers\FileUpload;
 
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
+
+Route::get('/getFiles/{filename}', [FileUpload::class, 'getFiles']);
+//proveriti ime fajlova
+
