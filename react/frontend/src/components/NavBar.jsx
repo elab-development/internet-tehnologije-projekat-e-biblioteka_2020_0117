@@ -76,7 +76,7 @@ axios.request(config)
             <li>  <Link to='/contact' className="nav-link">Contact</Link></li>
             <li><Link to='/payment' className="nav-link">Payment</Link></li>
             <li><Link to='/' className="nav-link" onClick={handleLogout}>Logout</Link></li>
-            {/* <li>{window.sessionStorage.getItem("auth_token") == null ? 
+            {/* <li>token == null ? 
                <li>  <Link to='/login' className="nav-link">Login</Link></li>:
                <li><Link to='/' className="nav-link" onClick={handleLogout}>Logout</Link></li>
                 mozda ovo treba da se doda

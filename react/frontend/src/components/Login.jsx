@@ -35,6 +35,7 @@ const Login = ({addToken, addUser, currentUser}) => {
                   addToken(res.data.access_token);
                   addUser(user);
                   console.log("User email: "+user.email);
+                  //ovo se sve ispisuje
                   navigate("/files");
               }
 
