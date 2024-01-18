@@ -22,6 +22,6 @@ Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
 
 
-Route::get('/getFiles/{filename}', [FileUpload::class, 'getFiles']);
+Route::get('/getFile/{name}', [FileUpload::class, 'getFile']);
 //proveriti ime fajlova
 

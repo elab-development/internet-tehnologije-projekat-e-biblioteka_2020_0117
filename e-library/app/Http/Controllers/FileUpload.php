@@ -26,12 +26,12 @@ class FileUpload extends Controller
 //    }
 
 //uzimanje fajlova iz baze
-public function getFiles($filename)
+public function getFile($file_path)
 {
-    $path = storage_path('app/' . $filename);
+    $path = storage_path('api/' . $file_path);  //mozda ne treba api
 
     if (file_exists($path)) {
-        $content = Storage::get($filename);
+        $content = Storage::get($name);
         return response()->json(['content' => $content]);
     } else {
         return response()->json(['error' => 'File not found'], 404);

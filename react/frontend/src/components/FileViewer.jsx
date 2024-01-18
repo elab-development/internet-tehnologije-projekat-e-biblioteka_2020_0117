@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import React from 'react';
+
 
 const FileViewer = ({ filename }) => {
   const [fileContent, setFileContent] = useState('');
@@ -7,7 +7,7 @@ const FileViewer = ({ filename }) => {
   useEffect(() => {
     const fetchFileContent = async () => {
       try {
-        const response = await fetch(`http://localhost/api/getFiles/${filename}`);
+        const response = await fetch(`http://localhost/api/getFile/${filename}`);
         const data = await response.json();
         if (data.content) {
           setFileContent(data.content);

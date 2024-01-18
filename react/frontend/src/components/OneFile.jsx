@@ -51,7 +51,7 @@ const OneFile = ({file}) => {
          <p className="file-description">
            {file.description}
          </p>
-         <button className="btn">Read book</button>
+         <button className="btn" onClick={handleReadBook} {...showFileViewer && <FileViewer filename={file.name} />}>Read book</button>
          
          <button className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`} onClick={changeColor}>
           <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
@@ -59,7 +59,7 @@ const OneFile = ({file}) => {
           {/* kad se klikne na Like file treba da se promeni boja srca koje ce da se stavi i da 
           se unese u bazu ili izbaci iz baze favourites */}
           {/* Prikazi FileViewer komponentu ako je showFileViewer postavljeno na true */}
-        {showFileViewer && <FileViewer filename={file.fileName} />}
+        
       
 
 
