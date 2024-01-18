@@ -38,7 +38,7 @@ function App() {
       if(users==null){
           axios.get("http://127.0.0.1:8000/api/users").then((res)=>{
               console.log(res.data);
-              setUsers(res.data.users);
+              setUsers(res.data);
           });
       }
   },[users]);
@@ -49,6 +49,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   function addUser(u){ 
+    console.log('123123');
+    console.log("users: " + users);
       if(users != null){
           // users.find((user) =>{
           //     if(user.email == u.email){
@@ -60,7 +62,7 @@ function App() {
           //         loadFavourites();
           //     };
           // });
-          const foundUser = users.find(user => user.email === u.email);
+          const foundUser = users.find(user => user.email == u.email);
           console.log('asdasd');
           if (foundUser) {
             setCurrentUser(foundUser);
@@ -180,7 +182,7 @@ function loadFavourites() {
   console.log("User id: " + id);
   var config = {
     method: 'get',
-    url: 'http://127.0.0.1:8000/api/favbooks/' + id,
+    url: 'http://127.0.0.1:8000/api/getFavBooks/' + id,
     headers: {
       Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
     },
@@ -189,17 +191,18 @@ function loadFavourites() {
 
   axios(config)
     .then(function (response) {
-      console.log("Response data:", response);
+      console.log("Response data:", response); //ovde su 1 i 2 za sad
+      //response = [1,2];
       console.log("asdasd");
       
       // Unutar ovog bloka možete proći kroz niz files.data i filtrirati samo omiljene knjige
       const filteredFiles = files.data.filter(file => {
         // Proverava da li trenutni file.id postoji u nizu favouriteBooks
-        return response.data.includes(file.id);
+        return response.data.includes(file.file_id);
       });
 
       // Ovde možete postaviti filteredFiles u state ili raditi sa njima kako želite
-      console.log(filteredFiles);
+      console.log("Filtered files: " + filteredFiles);
 
       // Primer postavljanja u state, ali možete prilagoditi kako želite
       setFavouriteBooks(filteredFiles);
@@ -234,13 +237,12 @@ function loadFavourites() {
       <Payment/>
       </div>
       } />
-        
-      {/*<Payment/>*/} 
+      
       
       <Route path="/user" element={
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
-      <User/>
+      <User user = {currentUser}/>
       <Files files = {favouriteBooks}/>
       </div>
       
@@ -260,6 +262,63 @@ function loadFavourites() {
 
       </BrowserRouter>
   );
+
+{
+  /*
+  return (
+    <BrowserRouter>
+      
+      <Routes>
+
+      <Route
+          path="/files"
+          element={
+            <div>
+              <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
+              <Welcome/>
+            <Files files = {files.data}/>
+            </div>
+            
+          }
+        />
+      <Route path="/payment" element={
+      <div>
+      <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
+      <Payment/>
+      </div>
+      } />
+        
+      
+      
+      <Route path="/user" element={
+        <div>
+        <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
+        <User user = {currentUser}/>
+        <Files files = {favouriteBooks}/>
+        </div>
+        
+        } />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/" element={<Login addToken={addToken} addUser={addUser} currentUser={currentUser}/>} />
+        <Route path="/contact" element={
+        <div>
+        <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
+        <Contact/>
+        </div>
+      } />
+        </Routes>
+        
+        <Online/>
+        <Footer/>
+  
+        </BrowserRouter>
+    );
+  
+  
+  */ 
+}
+ 
+
 }
 
 export default App;

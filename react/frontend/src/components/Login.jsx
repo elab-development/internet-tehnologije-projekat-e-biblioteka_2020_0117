@@ -31,9 +31,10 @@ const Login = ({addToken, addUser, currentUser}) => {
               if(res.data.success===true) {
                  window.sessionStorage.setItem("auth_token",res.data.access_token);
                   console.log(res.data);
-                  //console.log('asdasd');
+                  
                   addToken(res.data.access_token);
                   addUser(user);
+                  console.log("User email: "+user.email);
                   navigate("/files");
               }
 

@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 import { Link } from "react-router-dom"
 
 
-const NavBar = (token, removeToken, currentUser) => {
+const NavBar = ({token, removeToken, currentUser}) => {
 
   function handleLogout(){
 
@@ -31,7 +31,39 @@ const NavBar = (token, removeToken, currentUser) => {
 
     }
         
-    
+    {/*
+
+    ovo je generisano u Postmanu
+
+  const axios = require('axios');
+const qs = require('qs');
+let data = qs.stringify({
+  'id': '1' 
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: 'http://127.0.0.1:8000/api/logout',
+  headers: { 
+    'id': '1', 
+    'Content-Type': 'application/x-www-form-urlencoded', 
+    'Authorization': 'Bearer 19|FlGgWpT8k0mPbvvwSaW0aRbCeZLkBlZF7taxZKVC77bf37ee'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+
+  
+  
+  */ }
 
 
   return (
@@ -44,6 +76,11 @@ const NavBar = (token, removeToken, currentUser) => {
             <li>  <Link to='/contact' className="nav-link">Contact</Link></li>
             <li><Link to='/payment' className="nav-link">Payment</Link></li>
             <li><Link to='/' className="nav-link" onClick={handleLogout}>Logout</Link></li>
+            {/* <li>{window.sessionStorage.getItem("auth_token") == null ? 
+               <li>  <Link to='/login' className="nav-link">Login</Link></li>:
+               <li><Link to='/' className="nav-link" onClick={handleLogout}>Logout</Link></li>
+                mozda ovo treba da se doda
+          } <li/>*/ }
             <li className="nav-item search-icon">
                <button className="search-button"><i className="fas fa-search">Search</i></button>
             </li>

@@ -26,7 +26,7 @@ const Register = () => {
          axios.post("http://127.0.0.1:8000/api/register",user).
          then((res)=>
          {
-             console.log(res.data);
+            console.log(res.data);
             navigate("/")
 
          }).
