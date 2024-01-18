@@ -6,9 +6,40 @@ use Illuminate\Http\Request;
 use App\Http\Resources\FileResource;
 use App\Http\Resources\FileCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Storage\App\Public\Uploads;
+
 
 class FileUpload extends Controller
 {
+   //uzimanje fajlova iz baze
+//     public function getFileText($name)
+//    {
+//     $path = storage_path('app/' . $name);
+
+//     if (file_exists($path)) {
+//         $content = Storage::get($name);
+//         return response()->json(['text' => $content]);
+//     } else {
+//         return response()->json(['error' => 'File not found'], 404);
+//     }
+//    }
+
+//uzimanje fajlova iz baze
+public function getFiles($filename)
+{
+    $path = storage_path('app/' . $filename);
+
+    if (file_exists($path)) {
+        $content = Storage::get($filename);
+        return response()->json(['content' => $content]);
+    } else {
+        return response()->json(['error' => 'File not found'], 404);
+    }
+}
+
+
+
     public function createForm(){
         return view('fileUpload');
       }
