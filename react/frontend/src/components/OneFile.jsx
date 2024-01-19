@@ -6,13 +6,16 @@ import FileViewer from './FileViewer';
     
   
 
-const OneFile = ({file}) => {
+const OneFile = ({file, handleReadBook}) => {
 
   
   const [currentColor, setCurrentColor] = useState('white');
   const [showFileViewer, setShowFileViewer] = useState(false);
 
-  
+  const handleReadBookLocal = () => {
+    setShowFileViewer(true);
+    handleReadBook(); // Call the callback from the parent component
+  };
   const changeColor = () => {
     const newColor = currentColor === 'red' ? 'white' : 'red';
        setCurrentColor(newColor);
@@ -20,15 +23,15 @@ const OneFile = ({file}) => {
 
   };
 
-  const handleReadBook = () => {
-    //postaje true kada se klikne na dugme Read more
-    setShowFileViewer(true);
+  // const handleReadBook = () => {
+  //   //postaje true kada se klikne na dugme Read more
+  //   setShowFileViewer(true);
     //if(showFileViewer)
     //{
     //<FileViewer filename={file.name}/>;
-    console.log('treba da cita');
-    //}
-    };
+    // console.log('treba da cita');
+    // //}
+    // };
 
   
   // const readFileText = () => {
@@ -46,31 +49,55 @@ const OneFile = ({file}) => {
   //   readFileText();
   // }, []);
 
-  return (
-     <div className="file-container">
+  // return (
+  //    <div className="file-container">
       
-       <div className="file-body">
-         <h3 className="file-name">{file.fileName}</h3>
-         <h3 className="file-author">{file.authorName}</h3>
-         <h3 className="file-genre">{file.genreName}</h3>
-         <p className="file-description">
-           {file.fileDescription}
-         </p>
-         <button className="btn" onClick = {handleReadBook}>Read book</button>
-         {showFileViewer && <FileViewer filename={file.fileName} />}
+  //      <div className="file-body">
+  //        <h3 className="file-name">{file.fileName}</h3>
+  //        <h3 className="file-author">{file.authorName}</h3>
+  //        <h3 className="file-genre">{file.genreName}</h3>
+  //        <p className="file-description">
+  //          {file.fileDescription}
+  //        </p>
+  //        <button className="btn" onClick = {handleReadBookLocal}>Read book</button>
+  //        {showFileViewer && <FileViewer filename={file.fileName} />}
          
-         <button className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`} onClick={changeColor}>
-          <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
-         </button>
-          {/* kad se klikne na Like file treba da se promeni boja srca koje ce da se stavi i da 
-          se unese u bazu ili izbaci iz baze favourites */}
-          {/* Prikazi FileViewer komponentu ako je showFileViewer postavljeno na true */}
+  //        <button className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`} onClick={changeColor}>
+  //         <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
+  //        </button>
+  //         {/* kad se klikne na Like file treba da se promeni boja srca koje ce da se stavi i da 
+  //         se unese u bazu ili izbaci iz baze favourites */}
+  //         {/* Prikazi FileViewer komponentu ako je showFileViewer postavljeno na true */}
         
-       </div>
-     </div>
+  //      </div>
+  //    </div>
    
         
+  // );
+  return (
+    <div className="file-container">
+      <div className="file-body">
+      <h3 className="file-name">{file.fileName}</h3>
+          <h3 className="file-author">{file.authorName}</h3>
+          <h3 className="file-genre">{file.genreName}</h3>
+          <p className="file-description">
+            {file.fileDescription}
+          </p>
+        <button className="btn" onClick={handleReadBookLocal}>
+          Read book
+        </button>
+        {showFileViewer && <FileViewer filename={file.fileName} />}
+        {/* ... (rest of your component JSX) */}
+        <button
+          className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`}
+          onClick={changeColor}
+        >
+          <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
+        </button>
+      </div>
+    </div>
   );
+
 };
 
 export default OneFile;

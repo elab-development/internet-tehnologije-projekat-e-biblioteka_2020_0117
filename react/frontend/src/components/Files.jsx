@@ -107,10 +107,15 @@ import axios from "axios";
 
 const Files = ({ files }) => {
   console.log(files);
+ 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 2;
   const [filteredFiles, setFilteredFiles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showFileViewer, setShowFileViewer] = useState(false);
+  // const handleReadBook = () => {
+  //   setShowFileViewer((prevShowFileViewer) => !prevShowFileViewer);
+  // };
 
   useEffect(() => {
     const filtered = files && Array.isArray(files) ? files.filter((file) =>
@@ -121,18 +126,52 @@ const Files = ({ files }) => {
   }, [files, searchTerm]);
 
   const pageCount = filteredFiles ? Math.ceil(filteredFiles.length / itemsPerPage) : 0;
+  //stara verzija
+  // const displayFiles = () => {
+  //   if (!filteredFiles) {
+  //     return null;
+  //   }
 
+  //   const startIndex = currentPage * itemsPerPage;
+  //   const endIndex = startIndex + itemsPerPage;
+  //   return filteredFiles.slice(startIndex, endIndex).map((file) => (
+  //     <OneFile key={file.id} file={file} />
+  //   ));
+  // };
   const displayFiles = () => {
     if (!filteredFiles) {
       return null;
     }
+  
+  //   const startIndex = currentPage * itemsPerPage;
+  //   const endIndex = startIndex + itemsPerPage;
+  //   return filteredFiles
+  //     .slice(startIndex, endIndex)
+  //     .map((file, index) => (
+  //       <OneFile key={`${file.id}_${index}`} file={file} />
+  //     ));
+  // };
 
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredFiles.slice(startIndex, endIndex).map((file) => (
-      <OneFile key={file.id} file={file} />
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return filteredFiles
+    .slice(startIndex, endIndex)
+    .map((file, index) => (
+      <OneFile
+        key={`${file.id}_${index}`}
+        file={file}
+        handleReadBook={handleReadBook}
+        showFileViewer={showFileViewer}
+      />
     ));
-  };
+};
+
+const handleReadBook = (fileId) => {
+  setShowFileViewer((prevShowFileViewer) => ({
+    ...prevShowFileViewer,
+    [fileId]: true,
+  }));
+};
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -146,6 +185,10 @@ const Files = ({ files }) => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
+  // const resetPage = () => {
+  //   setCurrentPage(0);
+  // };
+
   return (
     <div>
       {/* Pretraga */}
@@ -154,6 +197,7 @@ const Files = ({ files }) => {
         placeholder="Search files (name)"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        
         style={{
           margin: '10px',
           padding: '8px',
@@ -162,8 +206,8 @@ const Files = ({ files }) => {
           margin: '0 auto',
         }}
       />
-      {displayFiles()}
-
+      {/*{displayFiles()}*/ }
+      {displayFiles(handleReadBook, showFileViewer)}
       <ReactPaginate
         pageCount={pageCount}
         pageRangeDisplayed={3}
