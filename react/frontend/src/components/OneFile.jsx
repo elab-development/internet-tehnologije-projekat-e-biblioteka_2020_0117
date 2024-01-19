@@ -13,8 +13,18 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
   const [showFileViewer, setShowFileViewer] = useState(false);
 
   const handleReadBookLocal = () => {
-    setShowFileViewer(true);
-    handleReadBook(); // Call the callback from the parent component
+    // Dodajte proveru za date_payment_valid ovde
+    if (currentUser.date_payment_valid === null || new Date(currentUser.date_payment_valid).getTime() < new Date().getTime()) {
+      // Ako nije validna clanarina, prikaži popup poruku
+      console.log(currentUser.date_payment_valid);
+      alert("Give me your money first.");
+    } else {
+      // Ako je validna clanarina, omoguci citanje knjige
+      console.log(new Date());
+
+      setShowFileViewer(true);
+      handleReadBook(); // Pozovite povratni poziv iz roditeljskog komponenta
+    }
   };
   const changeColor = () => {
     const newColor = currentColor === 'red' ? 'white' : 'red';
@@ -23,7 +33,35 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
 
   };
 
-  // const handleReadBook = () => {
+  
+  return (
+    <div className="file-container">
+      <div className="file-body">
+      <h3 className="file-name">{file.fileName}</h3>
+          <h3 className="file-author">{file.authorName}</h3>
+          <h3 className="file-genre">{file.genreName}</h3>
+          <p className="file-description">
+            {file.fileDescription}
+          </p>
+        <button className="btn" onClick={handleReadBookLocal}>
+          Read book
+        </button>
+        {showFileViewer && <FileViewer filename={file.fileName} />}
+        {/* ... (rest of your component JSX) */}
+        <button
+          className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`}
+          onClick={changeColor}
+        >
+          <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
+        </button>
+      </div>
+    </div>
+  );
+
+};
+
+export default OneFile;
+// const handleReadBook = () => {
   //   //postaje true kada se klikne na dugme Read more
   //   setShowFileViewer(true);
     //if(showFileViewer)
@@ -74,30 +112,3 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
    
         
   // );
-  return (
-    <div className="file-container">
-      <div className="file-body">
-      <h3 className="file-name">{file.fileName}</h3>
-          <h3 className="file-author">{file.authorName}</h3>
-          <h3 className="file-genre">{file.genreName}</h3>
-          <p className="file-description">
-            {file.fileDescription}
-          </p>
-        <button className="btn" onClick={handleReadBookLocal}>
-          Read book
-        </button>
-        {showFileViewer && <FileViewer filename={file.fileName} />}
-        {/* ... (rest of your component JSX) */}
-        <button
-          className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`}
-          onClick={changeColor}
-        >
-          <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
-        </button>
-      </div>
-    </div>
-  );
-
-};
-
-export default OneFile;
