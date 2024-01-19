@@ -226,7 +226,7 @@ function loadFavourites() {
             <div>
               <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
               <Welcome/>
-            <Files files = {files.data}/>
+            <Files files = {files.data} currentUser={currentUser}/>
             </div>
             
           }
@@ -243,7 +243,7 @@ function loadFavourites() {
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <User currentUser = {currentUser}/>
-      <Files files = {favouriteBooks}/>
+      <Files files = {favouriteBooks} currentUser={currentUser}/>
       </div>
       
       } />

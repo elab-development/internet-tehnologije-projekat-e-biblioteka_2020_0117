@@ -4,7 +4,7 @@ import OneFile from './OneFile';
 import "../style/Files.css";
 import axios from "axios";
 
-const Files = ({ files }) => {
+const Files = ({ files,currentUser }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 2;
   const [showFileViewer, setShowFileViewer] = useState(false);
@@ -44,7 +44,7 @@ const Files = ({ files }) => {
     return (
       <div>
         {filteredFiles.slice(startIndex, endIndex).map((file) => (
-          <OneFile key={file.id} file={file} handleReadBook={handleReadBook}/>
+          <OneFile key={file.id} file={file} handleReadBook={handleReadBook} currentUser={currentUser}/>
         ))}
       </div>
     );

@@ -6,7 +6,7 @@ import FileViewer from './FileViewer';
     
   
 
-const OneFile = ({file, handleReadBook}) => {
+const OneFile = ({file, handleReadBook,currentUser}) => {
 
   
   const [currentColor, setCurrentColor] = useState('white');
