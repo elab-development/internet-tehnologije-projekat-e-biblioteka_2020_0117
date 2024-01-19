@@ -26,12 +26,33 @@ class FileUpload extends Controller
 //    }
 
 //uzimanje fajlova iz baze
-public function getFiles($filename)
+// public function getFile($filename)
+// {
+//     echo $filename;
+//     //$path = storage_path('storage/app/public/uploads/' . $filename);
+//     $path = storage_path('app/public/uploads/' . $filename);
+    
+//      if (file_exists($path)) {
+//          $content = Storage::get('public/uploads/' . $filename);
+//          return response()->json(['content' => $content]);
+//      } else {
+//          return response()->json(['error' => 'File not found'], 404);
+//     }
+    
+// }
+public function getFile($filename)
 {
-    $path = storage_path('app/' . $filename);
+    $path = 'public/uploads/' . $filename;
+    
+    if (Storage::exists($path)) {
+        $content = Storage::get($path);
+        $encoding = mb_detect_encoding($content, 'UTF-8', true);
 
-    if (file_exists($path)) {
-        $content = Storage::get($filename);
+        if ($encoding !== 'UTF-8') {
+            // Ako podaci nisu u UTF-8 formatu, možete ih konvertovati ili ispraviti
+            $content = utf8_encode($content);
+            //$content = mb_convert_encoding($content, 'UTF-8', $encoding);
+        }
         return response()->json(['content' => $content]);
     } else {
         return response()->json(['error' => 'File not found'], 404);
@@ -50,9 +71,9 @@ public function getFiles($filename)
             ]);
             $fileModel = new File;
             if($request->file()) {
-                $fileName = time().'_'.$request->file->getClientOriginalName();
+                $fileName = /*time().'_'.*/$request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+                $fileModel->name = /*time().'_'.*/$request->file->getClientOriginalName();
                 $fileModel->file_path = '/storage/' . $filePath;
                 $fileModel->save();
                 return back()

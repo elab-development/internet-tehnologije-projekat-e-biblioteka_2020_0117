@@ -4,7 +4,7 @@ import "../style/User.css"
 
 const User = (currentUser) => {
 
-  console.log(currentUser.username);
+  console.log(currentUser);
   return (
     <div>
     <form className="row g-3">

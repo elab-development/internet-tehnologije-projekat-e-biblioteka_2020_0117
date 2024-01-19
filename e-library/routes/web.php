@@ -22,6 +22,10 @@ Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
 
 
-Route::get('/getFiles/{filename}', [FileUpload::class, 'getFiles']);
+Route::get('/getFile/{filename}', [FileUpload::class, 'getFile']);
+// Route::get('storage/{filename}', function ($filename)
+// {
+//     return File::make(storage_path('public/' . $filename))->response();
+// });
 //proveriti ime fajlova
 

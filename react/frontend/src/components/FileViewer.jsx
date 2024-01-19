@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import React from 'react';
+import React2 from 'react';
 
 const FileViewer = ({ filename }) => {
   const [fileContent, setFileContent] = useState('');
@@ -7,8 +7,9 @@ const FileViewer = ({ filename }) => {
   useEffect(() => {
     const fetchFileContent = async () => {
       try {
-        const response = await fetch(`http://localhost/api/getFiles/${filename}`);
+        const response = await fetch(`http://127.0.0.1:8000/getFile/${filename}`);
         const data = await response.json();
+        console.log('FileViewer se montira za fajl:', filename);
         if (data.content) {
           setFileContent(data.content);
         } else {

@@ -23,7 +23,12 @@ const OneFile = ({file}) => {
   const handleReadBook = () => {
     //postaje true kada se klikne na dugme Read more
     setShowFileViewer(true);
-  };
+    //if(showFileViewer)
+    //{
+    //<FileViewer filename={file.name}/>;
+    console.log('treba da cita');
+    //}
+    };
 
   
   // const readFileText = () => {
@@ -49,9 +54,10 @@ const OneFile = ({file}) => {
          <h3 className="file-author">{file.authorName}</h3>
          <h3 className="file-genre">{file.genreName}</h3>
          <p className="file-description">
-           {file.description}
+           {file.fileDescription}
          </p>
-         <button className="btn">Read book</button>
+         <button className="btn" onClick = {handleReadBook}>Read book</button>
+         {showFileViewer && <FileViewer filename={file.fileName} />}
          
          <button className={`hearthBtn ${currentColor === 'red' ? 'red' : 'white'}`} onClick={changeColor}>
           <FcLike style={{ color: currentColor === 'red' ? 'white' : 'red' }} />
@@ -59,10 +65,7 @@ const OneFile = ({file}) => {
           {/* kad se klikne na Like file treba da se promeni boja srca koje ce da se stavi i da 
           se unese u bazu ili izbaci iz baze favourites */}
           {/* Prikazi FileViewer komponentu ako je showFileViewer postavljeno na true */}
-        {showFileViewer && <FileViewer filename={file.fileName} />}
-      
-
-
+        
        </div>
      </div>
    

@@ -1,4 +1,7 @@
 <?php
+// header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+// header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
+// header('Access-Control-Allow-Origin: *');
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +57,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/allFiles', [FileUpload::class, 'getAllFilesGenreAuthorName']);
 Route::get('/getFavBooks/{id}', [FavBookController::class, 'index']);
+//Route::get('/getFile/{filename}', [FileUpload::class, 'getFile']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

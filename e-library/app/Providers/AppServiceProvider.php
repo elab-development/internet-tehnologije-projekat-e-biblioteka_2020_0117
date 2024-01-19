@@ -13,11 +13,14 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
 
-        $this->genreService = new GenreService();
+        $this->app->bind('App\Fruitcake\Cors\HandleCors', function ($app) {
+            return new HandleCors($app->make('Some\Other\Class'));
 
-        $this->app->singleton(GenreService::class, function ($app) {
-            return new GenreService();
-        });
+        //$this->genreService = new GenreService();
+
+        // $this->app->singleton(GenreService::class, function ($app) {
+        //     return new GenreService();
+         });
     }
 
     /**
