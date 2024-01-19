@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB; 
 
 class FavBookController extends Controller
 {
@@ -51,10 +52,10 @@ class FavBookController extends Controller
 
         $favBook = FavBook::create([
             'file_id' => $request->file_id,
-            'user_id' => $request->id//mozda treba user_id
+            'user_id' => $request->user_id//mozda treba user_id
         ]);
 
-        return response()->json(['Favourite book created successfully.', new FavBookResource($favBook), 'success' => true]);
+        return response()->json(['Favourite book created successfully.', 'success' => true]);
     }
 
     /**
@@ -83,16 +84,18 @@ class FavBookController extends Controller
     public function destroy(Request $request)
     {
         $file_id = $request->file_id;
-        $user_id = $request->id;//mozda user_id
+        $user_id = $request->user_id;//mozda user_id
 
-        $favBook = FavBook::get()->where('file_id', '=',$file_id)->where('user_id','=',$id)->first();
-        
-        if (!$favBook) {
+        $deleted = DB::table('favourites')->where('user_id', '=', $user_id)->where('file_id','=',$file_id)->delete();
+
+        // $favBook = FavBook::get()->where('file_id', '=',$file_id)->where('user_id','=',$user_id)->first();
+        // echo $favBook;
+        if (!$deleted) {
             return response()->json('There is no such favourite book', 404);
         }
 
-        $favBook->delete();
-
+        // $favBook->delete();
+        
         return response()->json('Book removed from favourites successfully.');
     }
 }

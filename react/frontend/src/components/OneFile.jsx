@@ -3,6 +3,7 @@ import "../style/OneFile.css";
 import { FcLike } from "react-icons/fc";
 import ReactState, { useState, useEffect } from 'react';
 import FileViewer from './FileViewer';
+import axios from "axios";
     
   
 
@@ -13,23 +14,63 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
   const [showFileViewer, setShowFileViewer] = useState(false);
 
   const handleReadBookLocal = () => {
-    // Dodajte proveru za date_payment_valid ovde
+    
     if (currentUser.date_payment_valid === null || new Date(currentUser.date_payment_valid).getTime() < new Date().getTime()) {
-      // Ako nije validna clanarina, prikaži popup poruku
+     
       console.log(currentUser.date_payment_valid);
       alert("Give me your money first.");
     } else {
-      // Ako je validna clanarina, omoguci citanje knjige
+      
       console.log(new Date());
 
       setShowFileViewer(true);
-      handleReadBook(); // Pozovite povratni poziv iz roditeljskog komponenta
+      handleReadBook(); 
     }
   };
   const changeColor = () => {
     const newColor = currentColor === 'red' ? 'white' : 'red';
        setCurrentColor(newColor);
        //treba dodati i da se ubacuje u bazu ili izbacuje iz baze u tabeli favBooks u zavisnosti od boje
+
+       var user_id = currentUser.id;
+       var file_id = file.file_id;
+       console.log("User_id: " , user_id, " file_id: ", file_id);
+
+       const requestData = {
+        file_id: file_id,
+        user_id: user_id,
+      };
+
+
+    if(currentColor == 'white'){
+      //posalji zahtev da se doda u bazu kod ovog korisnika id ovog fajla
+      axios.post('http://127.0.0.1:8000/api/storeFavBook', requestData)
+      .then(response => {
+        console.log(response.data); // Log the response from the Laravel backend
+        // Handle success, redirect, or update state as needed
+      })
+      .catch(error => {
+        console.error('Error saving favorite book:', error);
+        // Handle error, show a message to the user, etc.
+      });
+
+    }else{
+      
+      axios.delete(`http://127.0.0.1:8000/api/destroyFavBook/`,  {
+        params: {
+          file_id: file_id,
+          user_id: user_id,
+        }},)
+        .then(response => {
+          console.log(response.data); 
+        })
+        .catch(error => {
+          console.error('Error deleting favorite book:', error);
+          
+        });
+    }
+    
+
 
   };
 

@@ -58,14 +58,15 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/allFiles', [FileUpload::class, 'getAllFilesGenreAuthorName']);
 Route::get('/getFavBooks/{id}', [FavBookController::class, 'index']);
 //Route::get('/getFile/{filename}', [FileUpload::class, 'getFile']);
-
+//dodati posle dole u login delu
+Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
+Route::post('/storeFavBook', [FavBookController::class, 'store']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [UserController::class, 'show']); 
-    Route::delete('/destroyFavBook', [FavBookController::class, 'destroy']);
-    Route::post('/storeFavBook', [FavBookController::class, 'store']);
+    
     
 
     Route::group(['middleware' => ['admin']], function () {

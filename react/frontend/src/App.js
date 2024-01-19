@@ -195,16 +195,16 @@ function loadFavourites() {
       //response = [1,2];
       console.log("asdasd");
       
-      // Unutar ovog bloka možete proći kroz niz files.data i filtrirati samo omiljene knjige
+      
       const filteredFiles = files.data.filter(file => {
-        // Proverava da li trenutni file.id postoji u nizu favouriteBooks
+       
         return response.data.includes(file.file_id);
       });
 
-      // Ovde možete postaviti filteredFiles u state ili raditi sa njima kako želite
+      
       console.log("Filtered files: " + filteredFiles);
 
-      // Primer postavljanja u state, ali možete prilagoditi kako želite
+      
       setFavouriteBooks(filteredFiles);
     })
     .catch(function (error) {

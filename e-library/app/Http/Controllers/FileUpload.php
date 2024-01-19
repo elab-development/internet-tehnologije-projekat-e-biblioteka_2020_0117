@@ -49,7 +49,7 @@ public function getFile($filename)
         $encoding = mb_detect_encoding($content, 'UTF-8', true);
 
         if ($encoding !== 'UTF-8') {
-            // Ako podaci nisu u UTF-8 formatu, možete ih konvertovati ili ispraviti
+           
             $content = utf8_encode($content);
             //$content = mb_convert_encoding($content, 'UTF-8', $encoding);
         }
