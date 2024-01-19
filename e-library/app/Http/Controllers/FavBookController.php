@@ -23,7 +23,7 @@ class FavBookController extends Controller
        
         //$user = $request->user;
         //$user_id = $user->id;
-        $books = FavBook::get()->where('user_id', $id)->pluck('book_id');
+        $books = FavBook::get()->where('user_id', $id)->pluck('file_id');
         if (is_null($books)) {
             return response()->json('There are no such files', 404);
         }

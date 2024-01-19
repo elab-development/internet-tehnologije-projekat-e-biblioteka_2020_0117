@@ -191,8 +191,8 @@ function loadFavourites() {
 
   axios(config)
     .then(function (response) {
-      console.log("Response data:", response); //ovde su 1 i 2 za sad
-      //response = [1,2];
+      console.log("Response data:", response); 
+     
       console.log("asdasd");
       
       
@@ -226,7 +226,7 @@ function loadFavourites() {
             <div>
               <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
               <Welcome/>
-            <Files files = {files.data} currentUser={currentUser}/>
+            <Files files = {files.data} currentUser={currentUser} loadFavourites = {loadFavourites}/>
             </div>
             
           }
@@ -243,7 +243,7 @@ function loadFavourites() {
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
       <User currentUser = {currentUser}/>
-      <Files files = {favouriteBooks} currentUser={currentUser}/>
+      <Files files = {favouriteBooks} currentUser={currentUser} loadFavourites = {loadFavourites}/>
       </div>
       
       } />

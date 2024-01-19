@@ -4,7 +4,7 @@ import OneFile from './OneFile';
 import "../style/Files.css";
 import axios from "axios";
 
-const Files = ({ files,currentUser }) => {
+const Files = ({ files,currentUser , loadFavourites}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 2;
   const [showFileViewer, setShowFileViewer] = useState(false);
@@ -15,7 +15,6 @@ const Files = ({ files,currentUser }) => {
 
   useEffect(() => {
     if (Array.isArray(files)) {
-      // Apply filtering based on the search term
       
       const filtered = files.filter(
         (file) =>
@@ -44,7 +43,7 @@ const Files = ({ files,currentUser }) => {
     return (
       <div>
         {filteredFiles.slice(startIndex, endIndex).map((file) => (
-          <OneFile key={file.id} file={file} handleReadBook={handleReadBook} currentUser={currentUser}/>
+          <OneFile key={file.id} file={file} handleReadBook={handleReadBook} currentUser={currentUser} loadFavourites = {loadFavourites}/>
         ))}
       </div>
     );

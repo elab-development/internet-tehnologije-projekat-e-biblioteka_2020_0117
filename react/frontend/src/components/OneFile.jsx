@@ -7,7 +7,7 @@ import axios from "axios";
     
   
 
-const OneFile = ({file, handleReadBook,currentUser}) => {
+const OneFile = ({file, handleReadBook,currentUser, loadFavourites}) => {
 
   
   const [currentColor, setCurrentColor] = useState('white');
@@ -30,7 +30,7 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
   const changeColor = () => {
     const newColor = currentColor === 'red' ? 'white' : 'red';
        setCurrentColor(newColor);
-       //treba dodati i da se ubacuje u bazu ili izbacuje iz baze u tabeli favBooks u zavisnosti od boje
+      
 
        var user_id = currentUser.id;
        var file_id = file.file_id;
@@ -46,12 +46,11 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
       //posalji zahtev da se doda u bazu kod ovog korisnika id ovog fajla
       axios.post('http://127.0.0.1:8000/api/storeFavBook', requestData)
       .then(response => {
-        console.log(response.data); // Log the response from the Laravel backend
-        // Handle success, redirect, or update state as needed
+        console.log("Response data: ",response.data); 
       })
       .catch(error => {
         console.error('Error saving favorite book:', error);
-        // Handle error, show a message to the user, etc.
+       
       });
 
     }else{
@@ -62,14 +61,16 @@ const OneFile = ({file, handleReadBook,currentUser}) => {
           user_id: user_id,
         }},)
         .then(response => {
-          console.log(response.data); 
+          console.log("Response data: ",response.data); 
+         
         })
         .catch(error => {
           console.error('Error deleting favorite book:', error);
           
         });
     }
-    
+        
+        loadFavourites();
 
 
   };

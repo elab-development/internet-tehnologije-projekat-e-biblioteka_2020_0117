@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/genres/{genre_id}', [BookController::class, 'searcGenres']);
         Route::get('/genresAndAuthors/{author_id,genre_id}',[BookController::class,'searchAuthorGenre']);
         Route::get('/api/authors', [AuthorController::class, 'show']);
+        
     });
 
     
