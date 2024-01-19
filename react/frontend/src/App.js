@@ -242,7 +242,7 @@ function loadFavourites() {
       <Route path="/user" element={
       <div>
       <NavBar token={token} removeToken={removeToken} currentUser={currentUser}/>
-      <User user = {currentUser}/>
+      <User currentUser = {currentUser}/>
       <Files files = {favouriteBooks}/>
       </div>
       
