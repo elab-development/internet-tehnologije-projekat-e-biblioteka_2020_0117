@@ -54,7 +54,7 @@ const OneFile = ({file, handleReadBook,currentUser, loadFavourites}) => {
       });
 
     }else{
-      
+      //posalji zahtev da se izbaci iz baze kod ovog korisnika id ovog fajla
       axios.delete(`http://127.0.0.1:8000/api/destroyFavBook/`,  {
         params: {
           file_id: file_id,
@@ -69,7 +69,7 @@ const OneFile = ({file, handleReadBook,currentUser, loadFavourites}) => {
           
         });
     }
-        
+        //ponovo ucitaj omiljene knjige za korisnika
         loadFavourites();
 
 
